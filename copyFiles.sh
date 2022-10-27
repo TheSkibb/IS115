@@ -1,6 +1,6 @@
 path="$PHP/project"
 
-rm -r $path
-cp -r ./project $path
+sudo rm -r $path
+sudo cp -r ./project $path
 
 echo "files copied to $path"
