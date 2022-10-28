@@ -1,0 +1,96 @@
+#annonseContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: repeat(auto, 5);
+}
+
+#bildeContainer {
+  grid-column: 1 / span 5;
+  position: relative;
+  text-align: center;
+  border-bottom: solid 3px black;
+}
+
+#tittelContainer {
+  grid-column: 1 / span 4;
+  font-size: 30px;
+  border-bottom: solid 3px black;
+}
+
+#delContainer {
+  display: grid;
+  grid-template-columns: auto auto;
+  border-left: solid 3px black;
+}
+
+#shareIcon {
+  border: solid 1px black;
+  border-radius: 10px;
+  margin-top: 15px;
+  margin-left: 15px;
+}
+
+#heartIcon {
+  font-size: 50px;
+  padding-bottom: 15px;
+  margin-top: 5px;
+}
+
+#brukerInfo {
+  border-left: solid 3px black;
+}
+
+#brukerIcon {
+  margin-left: 38px;
+}
+
+#brukerNavn {
+  border: solid 1px black;
+  text-align: center;
+  margin-left: 5px;
+  margin-right: 5px;
+  border-radius: 5px;
+}
+
+#sendMeldingKnappWrapper {
+  border-left: solid 3px black;
+  border-bottom: solid 3px black;
+}
+#sendMeldingKnapp {
+  border: solid 1px black;
+  text-align: center;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  background-color: lightgrey;
+  border-radius: 5px;
+}
+
+.infoContainer {
+  grid-column: span 4;
+}
+
+#infoListe {
+  background-color: lightgrey;
+}
+
+#brukerContainer {
+  grid-row: span 2;
+  height: auto;
+}
+
+#beskrivelseContainer {
+  grid-column: 1 / span 4;
+}
+
+#beskrivelseText {
+  background-color: lightgrey;
+}
+
+#spacer {
+  border: none;
+}
+
+.clickable:hover {
+  cursor: pointer;
+}
