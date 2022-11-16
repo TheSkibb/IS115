@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Hjem</title>
+<title>Registrering</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Utseende til søkeikonet -->
@@ -22,9 +22,11 @@ body {
 .hoved {   
   -ms-flex: 70%; /* IE10 */
   flex: 70%;
-  background-color: #FFFEFA;
+  background-color: white;
   padding: 20px;
   margin:0 auto; text-align:center;
+  height: 100%; /* Fortsetter fargene videre */
+
 }
 
 /* Bilde */

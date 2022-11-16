@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Hjem</title>
+<title>Godkjenning</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- Ny -->
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
-
 <!-- Utseende til søkeikonet -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -19,7 +16,6 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
-  height: 100px; /* Fortsetter fargene videre */
 }
 
 /* Hoved kolonne */
@@ -30,6 +26,14 @@ body {
   padding: 20px;
   margin:0 auto; text-align:center;
   height: 100%; /* Fortsetter fargene videre */
+
+}
+
+/* Bilde */
+.bilde {
+  background-color: #aaa;
+  width: 100%;
+  padding: 20px;
 }
 
 /* Navigasjonsbar utseende*/
@@ -112,7 +116,6 @@ body {
 a { text-decoration: none; 
     color: #FFA74F;}
 
-
 </style>
 </head>
 <body>
@@ -131,47 +134,33 @@ a { text-decoration: none;
 </div>
 
 
-<!--hoved siden, på høyre siden  -->
-<div class="hoved">
-    <h2>Logg inn</h2>
-    <div class="login">
-    <form name="f1" action = "godkjenning_logginn.php" onsubmit = "return validation()" method = "POST">  
-            <label for="username">
-                <i class="fas fa-user"></i><br>
-            </label>
-            <input type = "text" id = "bruker" name  = "bruker" placeholder="E-post" required/>  
-            <br><br>
-            <label for="password">
-                <i class="fas fa-lock"></i><br>
-            </label>
-            <input type = "password" id = "passord" name  = "passord" placeholder= "Passord" required/>  
-            <br><br><br>
-            <input type= "submit" id = "submit" value= "Login" />
-        </form>
-        <br><br><br>
-        <h3>Har du ikke en konto? <a href="registrer.php" style="text-decoration: none">Registrer deg </a></h3>
+<!--hoved siden -->
+<div class="hoved" >
+<?php      
+    include("forbindelse_logginn.php");  
+    $brukernavn = $_POST["bruker"];  
+    $passord = $_POST["passord"];  
+      
+        //to prevent from mysqli injection  
+        $brukernavn = stripcslashes($brukernavn);  
+        $passord = stripcslashes($passord);  
+        $brukernavn = mysqli_real_escape_string($con, $brukernavn);  
+        $passord = mysqli_real_escape_string($con, $passord);  
+      
+        $sql = " select *from login where brukernavn = '$brukernavn' and passord = '$passord'";  
+        $resultat = mysqli_query($con, $sql);  
+        $row = mysqli_fetch_array($resultat, MYSQLI_ASSOC);  
+        $count = mysqli_num_rows($resultat);  
+          
+        if($count == 1){  
+            echo "<h2>Vellykket innlogging</h2> <br><br>
+            <p><h3>Sjekk ut din profil: <a href='profil.php' style='text-decoration: none'>
+            <p>Profil </a></h3>";  
+        }  
+        else{  
+            echo "<h2>Innlogging feilet. Ugyldig brukernavn eller passord.</h2>";  
+        }     
+?>  
 </div>
-<script>  
-            function validation()  
-            {  
-                var id=document.f1.bruker.value;  
-                var ps=document.f1.passord.value;  
-                if(id.length=="" && ps.length=="") {  
-                    alert("Brukernavn og passord må fylles ut.");  
-                    return false;  
-                }  
-                else  
-                {  
-                    if(id.length=="") {  
-                        alert("Skriv inn brukernavn.");  
-                        return false;  
-                    }   
-                    if (ps.length=="") {  
-                    alert("Skriv inn passord.");  
-                    return false;  
-                    }  
-                }                             
-            }  
-        </script>  
 </body>
 </html>

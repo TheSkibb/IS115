@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Hjem</title>
+<title>Favoritter</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Utseende til søkeikonet -->
@@ -16,21 +16,17 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
+
 }
 
 /* Hoved kolonne */
 .hoved {   
   -ms-flex: 70%; /* IE10 */
   flex: 70%;
-  background-color: #FFFEFA;
+  background-color: white;
   padding: 20px;
-}
-
-/* Bilde */
-.bilde {
-  background-color: #aaa;
-  width: 100%;
-  padding: 20px;
+  margin:0 auto; text-align:center;
+  height: 100%; /* Fortsetter fargene videre */
 }
 
 /* Navigasjonsbar utseende*/
@@ -127,7 +123,7 @@ body {
 
 
 <!--hoved siden -->
-<div class="hoved" >
+<div class="hoved">
 <h2>Favoritter</h2>
   
   </div>
