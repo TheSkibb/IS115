@@ -29,26 +29,27 @@ create or replace table bruker(
 );
 
 create or replace table annonser(
-  id int not null primary key,
+  id int not null primary key auto_increment,
   eier int not null,
   gate varchar(255) not null,
-  postnummer int not null, 
+  postnummer varchar(4) not null, 
   leie int not null,
   depositum int not null,
-  beskrivelse varchar(255),
-  startLeie date,
-  sluttLeie date,
-  kollektiv boolean,
-  dyrTillatt boolean,
-  roykingTillatt boolean,
-  stromInkl boolean,
-  internettInkl boolean,
-  tvInkl boolean,
-  moblert boolean,
-  boligtype int, 
-  soveromAnt int,
-  badAnt int,
-  kvadrat int
+  tittel varchar(255) not null,
+  beskrivelse varchar(255) not null,
+  startLeie date default null,
+  sluttLeie date default null,
+  kollektiv boolean default null,
+  dyrTillatt boolean default null,
+  roykingTillatt boolean default null,
+  stromInkl boolean default null,
+  internettInkl boolean default null,
+  tvInkl boolean default null,
+  moblert boolean default null,
+  boligtype int default null,
+  soveromAnt int default null,
+  badAnt int default null,
+  kvadrat int default null
 );
 
 create or replace table favoritter(
@@ -77,5 +78,45 @@ create or replace table postnummer(
 create or replace table poststed(
   id int not null primary key,
   poststed varchar(255)
+);
+
+insert into annonser (
+  eier,
+  gate,
+  postnummer,
+  leie,
+  depositum,
+  tittel,
+  beskrivelse,
+  startLeie,
+  sluttLeie,
+  kollektiv,
+  dyrTillatt,
+  internettInkl,
+  tvInkl,
+  moblert,
+  boligtype,
+  soveromAnt,
+  badAnt,
+  kvadrat
+) values (
+  12,
+  'supergata',
+  '1350',
+  10200,
+  20000,
+  'koselig leilighet for studenter',
+  'fin leilighet med masse av plass. Koselig strøk med mulighet for mange forskjellige aktiviteter',
+  '2023-01-25',
+  '2023-01-25',
+  false,
+  true,
+  true,
+  false,
+  true,
+  4,
+  2,
+  1,
+  60
 );
 

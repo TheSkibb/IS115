@@ -1,13 +1,13 @@
 use project;
 
 drop table 
-annonser,
-bilde,
 bildeAnnonser,
+bilde,
 boligtype,
 bruker,
 brukerType,
 favoritter,
 kjonn,
 postnummer, 
-poststed;
+poststed,
+annonser;
