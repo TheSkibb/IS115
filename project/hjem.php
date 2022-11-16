@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<title>Hjem</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- Utseende til søkeikonet -->
+<!DOCTYPE html> <html lang="en">
+<head><title>Hjem</title>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Utseende til søkeikonet  /* */-->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <style>
@@ -30,7 +27,7 @@ body {
 /* Sidefelt/venstre kolonne */
 .side {
   -ms-flex: 30%; /* IE10 */
-  flex: 30%;
+  flex: 15%;
   background-color: #FFF9EE;
   padding: 20px;
 }
@@ -39,8 +36,9 @@ body {
 .hoved {   
   -ms-flex: 70%; /* IE10 */
   flex: 70%;
-  background-color: #FFFEFA;
+  background-color: white; /* #FFFEFA; Forrige farge */
   padding: 20px;
+  height: 100%; /* Fortsetter fargene videre */
 }
 
 /* Bilde */
@@ -125,6 +123,24 @@ body {
     border: 1px solid #ccc;  
   }
 }
+/* */
+/*Knapp uttsende */
+.knapp {
+  background-color: transparent;
+        color: black;
+        border: none;
+        padding: 50px;
+        /*margin: 0px;*/
+        width: 100px;
+        height: 100%;
+        /* position: fixed;*/
+}
+
+.knapp:hover {
+  /*Skygge effekt når du skal trykke på den */
+  box-shadow: 0 2px 16px 0 rgba(0,0,0,0.24),0 17px 10px 0 rgba(0,0,0,0.19);
+}
+
     
 </style>
 </head>
@@ -367,29 +383,33 @@ body {
 
 <!--hoved siden, på høyre siden  -->
 <div class="hoved">
-<button width="600" height="100">
+<button class="knapp" style="font-size : 15px; width: 100%; height: 40%;">
   <h2>Nydelig 3-roms leilighet til leie i Lund</h2>
   <h5>80m<sup>2</sup>, 14.000 kr</h5>
   <div class="bilde" style="height:200px;">Tekst</div>
   <p>Leilighet, rom i bofelleskap, 3 soverom, balkong, garasje, heis</p>
-  <br></button>
+  <br>
+</button>
 
+
+<button class="knapp" style="font-size : 15px; width: 100%; height: 40%;">
   <h2>Pen sentrumsnær leilighet i Kristiansand</h2>
   <h5>60m<sup>2</sup>, 10.000 kr</h5>
   <div class="bilde" style="height:200px;">Tekst</div>
   <p>Hybel, 2 soverom, strøm</p>
   <br>
+</button>
 
+<button class="knapp" style="font-size : 15px; width: 100%; height: 40%;">
   <h2>Grim - lys og trivelig 2-roms med terrasse</h2>
   <h5>50m<sup>2</sup>, 11.000 kr</h5>
   <div class="bilde" style="height:200px;">Tekst</div>
   <p>Leilighet, 2 soverom, P-plass, terrasse,  fullt møblert, kabel, heis</p>
   <br>
+</button>
 
   </div>
 </div>
-
-
 
 </body>
 </html>
