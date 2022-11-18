@@ -1,22 +1,22 @@
 use project
 
 create or replace table kjonn(
-  id int not null primary key,
+  id int not null primary key auto_increment,
   kjonn varchar(255)
 );
 
 create or replace table brukerType(
-  id int not null primary key,
+  id int not null primary key auto_increment,
   brukerType varchar(255) not null
 );
 
 create or replace table boligtype(
-  id int not null primary key,
+  id int not null primary key auto_increment,
   boligtype varchar(255) not null
 );
 
 create or replace table bruker(
-  id int not null primary key, 
+  id int not null primary key auto_increment,
   fornavn varchar(255) not null,
   etternavn varchar(255) not null,
   epost varchar(254) not null,
@@ -80,6 +80,101 @@ create or replace table poststed(
   poststed varchar(255)
 );
 
+--insert values into tables:
+
+--kjonn
+insert into kjonn (kjonn) values ('mann');
+insert into kjonn (kjonn) values ('kvinne');
+insert into kjonn (kjonn) values ('annet');
+
+--brukertype
+insert into brukerType (brukertype) values ('utleier');
+insert into brukerType (brukertype) values ('leietaker');
+
+--boligtyper
+insert into boligtype (boligtype) values('Enebolig');
+insert into boligtype (boligtype) values('Garasje/Parkering');
+insert into boligtype (boligtype) values('Hybel');
+insert into boligtype (boligtype) values('Leilighet');
+insert into boligtype (boligtype) values('Rekkehus');
+insert into boligtype (boligtype) values('Bofelleskap');
+insert into boligtype (boligtype) values('Enebolig');
+
+--bruker
+insert into bruker (
+  fornavn,
+  etternavn,
+  epost,
+  brukerTypeId,
+  kjonnId,
+  beskrivelse,
+  passord
+) values (
+  'birger',
+  'olsen',
+  'birgerolsen@mail.com',
+  1,
+  1,
+  'vennlig utleier som leier ut leiligheter',
+  'passord'
+);
+
+insert into bruker (
+  fornavn,
+  etternavn,
+  epost,
+  brukerTypeId,
+  kjonnId,
+  beskrivelse,
+  passord
+) values (
+  'kari',
+  'svendsen',
+  'kariSvendsen@mail.no',
+  1,
+  2,
+  'utleier som leier ut kjellerleiligheten min',
+  'passord'
+);
+
+insert into bruker (
+  fornavn,
+  etternavn,
+  epost,
+  brukerTypeId,
+  kjonnId,
+  beskrivelse,
+  passord
+) values (
+  'ola',
+  'nordmann',
+  'olaNordmann@mail.com',
+  2,
+  1,
+  'rolig person som ikke liker fest og moro',
+  'passord'
+);
+insert into bruker (
+  fornavn,
+  etternavn,
+  epost,
+  brukerTypeId,
+  kjonnId,
+  beskrivelse,
+  passord
+) values (
+  'nora',
+  'aas',
+  'noraAas@mail.no',
+  2,
+  2,
+  'leter etter et sted og bo',
+  'passord'
+);
+
+
+
+--annonser
 insert into annonser (
   eier,
   gate,
@@ -92,6 +187,8 @@ insert into annonser (
   sluttLeie,
   kollektiv,
   dyrTillatt,
+  roykingTillatt,
+  stromInkl,
   internettInkl,
   tvInkl,
   moblert,
@@ -100,7 +197,7 @@ insert into annonser (
   badAnt,
   kvadrat
 ) values (
-  12,
+  1,
   'supergata',
   '1350',
   10200,
@@ -114,6 +211,8 @@ insert into annonser (
   true,
   false,
   true,
+  null,
+  false,
   4,
   2,
   1,
@@ -132,6 +231,8 @@ insert into annonser (
   sluttLeie,
   kollektiv,
   dyrTillatt,
+  roykingTillatt,
+  stromInkl,
   internettInkl,
   tvInkl,
   moblert,
@@ -140,7 +241,7 @@ insert into annonser (
   badAnt,
   kvadrat
 ) values (
-  12,
+  2,
   'gategata 98',
   '1234',
   13200,
@@ -154,6 +255,8 @@ insert into annonser (
   false,
   true,
   true,
+  null,
+  null,
   2,
   2,
   1,
@@ -172,6 +275,8 @@ insert into annonser (
   sluttLeie,
   kollektiv,
   dyrTillatt,
+  roykingTillatt,
+  stromInkl,
   internettInkl,
   tvInkl,
   moblert,
@@ -180,7 +285,7 @@ insert into annonser (
   badAnt,
   kvadrat
 ) values (
-  4,
+  1,
   'bringebaerstien 21',
   '2345',
   10000,
@@ -194,8 +299,54 @@ insert into annonser (
   true,
   true,
   true,
+  null,
+  null,
   3,
   1,
   2,
+  40
+);
+
+insert into annonser (
+  eier,
+  gate,
+  postnummer,
+  leie,
+  depositum,
+  tittel,
+  beskrivelse,
+  startLeie,
+  sluttLeie,
+  kollektiv,
+  dyrTillatt,
+  roykingTillatt,
+  stromInkl,
+  internettInkl,
+  tvInkl,
+  moblert,
+  boligtype,
+  soveromAnt,
+  badAnt,
+  kvadrat
+) values (
+  2,
+  'tangen 78',
+  '2345',
+  40000,
+  60000,
+  'ok leilighet med noen hull i taket',
+  'helt ok leilighet. her som sagt noen hull i taket, men dette er fikset ved å dette bøtter på gulvet, og en pakke lærertyggis ligger i skuffen på badet',
+  '10-11-22',
+  '13-08-24',
+  null,
+  null, 
+  true,
+  true,
+  null,
+  true,
+  true,
+  2,
+  3,
+  3,
   40
 );
