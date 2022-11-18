@@ -2,7 +2,10 @@
 class HjemAnnonse{
   static function getAllAnnonser($filter = null){
     require_once('./../lib/database.inc.php');
-    $sql = "select tittel, kvadrat, leie from annonser";
+    $sql = "
+    select annonser.id, tittel, kvadrat, leie, boligtype.boligtype
+    from annonser
+    inner join boligtype on annonser.boligtype = boligtype.id";
     $sp = $pdo->prepare($sql);
     try{
       $sp->execute();
@@ -16,8 +19,10 @@ class HjemAnnonse{
     if(sizeof($results) > 0){
       foreach ($results as $result) {
         self::getAnnonse(
+          $result->id,
           $result->tittel,
           $result->leie,
+          $result->boligtype,
           $result->kvadrat
         );
       }
@@ -27,14 +32,19 @@ class HjemAnnonse{
     }
   }
   
-  static function getAnnonse($tittel, $leie, $kvadrat=null){
+  static function getAnnonse($id, $tittel, $leie, $boligtype, $kvadrat=null){
     echo '
-      <button class="knapp" style="font-size : 15px; width: 100%; height: 40%;">
-      <h2> ' . $tittel . '</h2>
-      <h5>'. $kvadrat . 'm<sup>2</sup> ' . $leie . 'kr</h5>
-      <div class="bilde" style="height:200px;">Tekst</div>
-      <br>
-      </button>
+      <a href="http://localhost/project/htdocs/assets/annonse.php?annonse=' . $id .'">
+        <button class="knapp" style="font-size : 15px; width: 100%; height: 40%;">
+          <h2> ' . $tittel . '</h2>
+          <h5>'. $kvadrat . 'm<sup>2</sup> ' . $leie . 'kr</h5>
+          ' . $boligtype . '
+          <div class="bilde" style="height:200px;">
+            <img src="./../images/example.jpg" height="150px">
+          </div >
+          <br>
+        </button>
+      </a>
     ';
   }
 }
