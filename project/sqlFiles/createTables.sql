@@ -214,7 +214,7 @@ insert into annonser (
   null,
   false,
   4,
-  2,
+  4,
   1,
   60
 );
@@ -257,7 +257,7 @@ insert into annonser (
   true,
   null,
   null,
-  2,
+  5,
   2,
   1,
   30
@@ -301,7 +301,7 @@ insert into annonser (
   true,
   null,
   null,
-  3,
+  1,
   1,
   2,
   40
@@ -345,7 +345,7 @@ insert into annonser (
   null,
   true,
   true,
-  2,
+  3,
   3,
   3,
   40
