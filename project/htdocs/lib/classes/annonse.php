@@ -4,7 +4,14 @@ class Annonse {
   function __construct($annonseId){
     require_once('./../lib/database.inc.php');
 
-    $sql = "select * from annonser where id = :id";
+    $sql ="select *, 
+    boligtype.boligtype,
+    bruker.fornavn,
+    bruker.etternavn
+    from annonser 
+    inner join boligtype on annonser.boligtype = boligtype.id
+    inner join bruker on annonser.eier = bruker.id
+    where annonser.id=:id";
     $sp = $pdo->prepare($sql);
     $sp->bindParam(':id', $id, PDO::PARAM_INT);
     $id = $annonseId;
@@ -14,14 +21,15 @@ class Annonse {
       $results = $sp->fetchAll(PDO::FETCH_OBJ);
     }
     catch(PDOException $e){
-    echo '{"quotes":"null", "error":"' . $e->getMessage . '"}';
+    echo 'error' . $e;
     exit();
     }
+
     if(sizeof($results) > 0){
       $this->information = array(
         'bilde'=>"./../images/example.jpg",
         'tittel'=>$results[0]->tittel,
-        'bruker' =>$results[0]->eier,
+        'bruker' =>$results[0]->fornavn . ' ' . $results[0]->etternavn,
         'infoListe'=>array(
           self::displayInfo($results[0]->startLeie, "start leie: "),
           self::displayInfo($results[0]->sluttLeie, "slutt leie: "),
