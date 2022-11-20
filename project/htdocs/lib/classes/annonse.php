@@ -27,7 +27,7 @@ class Annonse {
 
     if(sizeof($results) > 0){
       $this->information = array(
-        'bilde'=>"./../images/example.jpg",
+        'bilde'=>"./../images/" . $results[0]->bildelenke,
         'tittel'=>$results[0]->tittel,
         'bruker' =>$results[0]->fornavn . ' ' . $results[0]->etternavn,
         'infoListe'=>array(
@@ -45,7 +45,7 @@ class Annonse {
           self::displayInfo($results[0]->badAnt, "antall bad: "),
           self::displayInfo($results[0]->kvadrat, "kvadratmeter: ")
         ),
-        'beskrivelse'=>$results[0]->beskrivelse
+        'beskrivelse'=>$results[0]->beskrivelse,
       );
     }
     else{

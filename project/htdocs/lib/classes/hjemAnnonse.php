@@ -3,7 +3,7 @@ class HjemAnnonse{
   static function getAllAnnonser($filter = null){
     require_once('./../lib/database.inc.php');
     $sql = "
-    select annonser.id, tittel, kvadrat, leie, boligtype.boligtype
+    select annonser.id, tittel, kvadrat, leie, bildelenke, boligtype.boligtype
     from annonser
     inner join boligtype on annonser.boligtype = boligtype.id";
     $sp = $pdo->prepare($sql);
@@ -23,6 +23,7 @@ class HjemAnnonse{
           $result->tittel,
           $result->leie,
           $result->boligtype,
+          $result->bildelenke,
           $result->kvadrat
         );
       }
@@ -32,7 +33,7 @@ class HjemAnnonse{
     }
   }
   
-  static function getAnnonse($id, $tittel, $leie, $boligtype, $kvadrat=null){
+  static function getAnnonse($id, $tittel, $leie, $boligtype, $bilde, $kvadrat=null){
     echo '
       <a href="http://localhost/project/htdocs/assets/annonse.php?annonse=' . $id .'">
         <button class="knapp" style="font-size : 15px; width: 100%; height: 40%;">
@@ -40,7 +41,7 @@ class HjemAnnonse{
           <h5>'. $kvadrat . 'm<sup>2</sup> ' . $leie . 'kr</h5>
           ' . $boligtype . '
           <div class="bilde" style="height:200px;">
-            <img src="./../images/example.jpg" height="150px">
+            <img src="./../images/' . $bilde . '" height="150px">
           </div >
           <br>
         </button>
