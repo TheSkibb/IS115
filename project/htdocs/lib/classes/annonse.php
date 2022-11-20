@@ -27,6 +27,7 @@ class Annonse {
 
     if(sizeof($results) > 0){
       $this->information = array(
+        'id'=>$results[0]->id,
         'bilde'=>"./../images/example.jpg",
         'tittel'=>$results[0]->tittel,
         'bruker' =>$results[0]->fornavn . ' ' . $results[0]->etternavn,
@@ -94,6 +95,30 @@ class Annonse {
       }
     }
     echo $output;
+  }
+  function isFavorite($bruker){
+    include "../lib/database.inc.php";
+    $sql = "select * from favoritter where brukerId = :brukerId and annonseId = :annonseId ";
+    $sp = $pdo->prepare($sql);
+    $sp->bindParam(':brukerId', $brukerId, PDO::PARAM_INT);
+    $sp->bindParam(':annonseId', $annonseId, PDO::PARAM_INT);
+    $brukerId = $bruker;
+    $annonseId = $this->information['id'];
+
+    try{
+      $sp->execute();
+      $results = $sp->fetchAll(PDO::FETCH_OBJ);
+    }
+    catch(PDOException $e){
+      echo 'error' . $e;
+      exit();
+    }
+    if(sizeof($results) > 0){
+      return 1;
+    }
+    else{
+      return 0;
+    }
   }
 }
 ?>

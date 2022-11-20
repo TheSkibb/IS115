@@ -10,7 +10,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
     
-include "../lib/classes/annonse.php";
+require_once("../lib/classes/annonse.php");
 
 if(!key_exists( 'annonse', $_GET)){
   header("Location: 404.php");
@@ -43,7 +43,19 @@ function getInfoListe(){
   $annonse->getInfoListe();
 }
 
+//check if the annonse is a favorite or not
+$favorite = $annonse->isFavorite(1);
+echo $favorite;
+
+$favoriteLink = 
+  '../lib/favorite.php' .
+  '?annonse=' . $_GET['annonse'] .
+  '&bruker=' . 1 .
+  '&favorite=' . $favorite
+;
+
 ?>
+
 
   <body>
     <div id="annonseContainer">
@@ -56,7 +68,11 @@ function getInfoListe(){
       </div>
       <div id="delContainer" class="containerItem">
           <div><img id="shareIcon" class="clickable" src="../images/share.png" height="50px"></div>
-          <div id="heartIcon" class="clickable" onclick="clickFavorite()">🤍</div>
+          <a href=<?php echo $favoriteLink?>>
+            <div id="heartIcon" class="clickable" onclick="clickFavorite()">
+              <?php echo $favorite == 0 ? '🤍' : '❤️️'?>
+            </div>
+          </a>
       </div>
       <div class="infoContainer containerItem">
         <div>
