@@ -44,7 +44,7 @@ function getInfoListe(){
 }
 
 //check if the annonse is a favorite or not
-$favorite = $annonse->isFavorite(1);
+$favorite = $annonse->isFavorite(1, $_GET['annonse']);
 
 $favoriteLink = 
   '../lib/favorite.php' .

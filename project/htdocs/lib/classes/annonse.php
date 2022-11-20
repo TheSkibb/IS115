@@ -27,7 +27,6 @@ class Annonse {
 
     if(sizeof($results) > 0){
       $this->information = array(
-        'id'=>$results[0]->id,
         'bilde'=>"./../images/example.jpg",
         'tittel'=>$results[0]->tittel,
         'bruker' =>$results[0]->fornavn . ' ' . $results[0]->etternavn,
@@ -96,14 +95,17 @@ class Annonse {
     }
     echo $output;
   }
-  function isFavorite($bruker){
+  function isFavorite($bruker, $annonse){
     include "../lib/database.inc.php";
     $sql = "select * from favoritter where brukerId = :brukerId and annonseId = :annonseId ";
     $sp = $pdo->prepare($sql);
     $sp->bindParam(':brukerId', $brukerId, PDO::PARAM_INT);
     $sp->bindParam(':annonseId', $annonseId, PDO::PARAM_INT);
     $brukerId = $bruker;
-    $annonseId = $this->information['id'];
+    echo $brukerId;
+
+    $annonseId = $annonse;
+    echo $annonseId;
 
     try{
       $sp->execute();
