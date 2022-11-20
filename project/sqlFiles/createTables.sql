@@ -49,25 +49,14 @@ create or replace table annonser(
   boligtype int default null,
   soveromAnt int default null,
   badAnt int default null,
-  kvadrat int default null
+  kvadrat int default null,
+  bildelenke varchar(255)
 );
 
 create or replace table favoritter(
   brukerId int not null, 
   annonseId int not null, 
   primary key(brukerId, annonseId)
-);
-
-create or replace table bilde(
-  id int not null primary key,
-  bildeLenke varchar(255) not null
-);
-
-create or replace table bildeAnnonser(
-  annonseId int not null, 
-  bildeId int not null,
-  FOREIGN KEY(annonseId) REFERENCES annonser(id),
-  FOREIGN KEY(bildeId) REFERENCES bilde(id)
 );
 
 create or replace table postnummer(
@@ -195,7 +184,8 @@ insert into annonser (
   boligtype,
   soveromAnt,
   badAnt,
-  kvadrat
+  kvadrat,
+  bildelenke
 ) values (
   1,
   'supergata',
@@ -216,7 +206,8 @@ insert into annonser (
   4,
   4,
   1,
-  60
+  60,
+  "apartment1.jpg"
 );
 
 insert into annonser (
@@ -239,7 +230,8 @@ insert into annonser (
   boligtype,
   soveromAnt,
   badAnt,
-  kvadrat
+  kvadrat,
+  bildelenke
 ) values (
   2,
   'gategata 98',
@@ -260,7 +252,8 @@ insert into annonser (
   5,
   2,
   1,
-  30
+  30,
+  "apartment2.jpg"
 );
 
 insert into annonser (
@@ -283,7 +276,8 @@ insert into annonser (
   boligtype,
   soveromAnt,
   badAnt,
-  kvadrat
+  kvadrat,
+  bildelenke
 ) values (
   1,
   'bringebaerstien 21',
@@ -304,7 +298,8 @@ insert into annonser (
   1,
   1,
   2,
-  40
+  40,
+  "apartment3.jpg"
 );
 
 insert into annonser (
@@ -327,7 +322,8 @@ insert into annonser (
   boligtype,
   soveromAnt,
   badAnt,
-  kvadrat
+  kvadrat,
+  bildelenke
 ) values (
   2,
   'tangen 78',
@@ -348,5 +344,6 @@ insert into annonser (
   3,
   3,
   3,
-  40
+  40,
+  "apartment4.jpg"
 );

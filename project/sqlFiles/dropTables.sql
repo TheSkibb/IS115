@@ -1,8 +1,6 @@
 use project;
 
 drop table 
-bildeAnnonser,
-bilde,
 boligtype,
 bruker,
 brukerType,
