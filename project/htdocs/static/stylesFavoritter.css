@@ -5,8 +5,11 @@
 /* Utseende på "bodyen" */
 body {
   font-family: Arial, Helvetica, sans-serif;
-  margin: 0;
+}
 
+#annonser{
+  margin-left: 10vw;
+  margin-right: 10vw;
 }
 
 /* Hoved kolonne */
