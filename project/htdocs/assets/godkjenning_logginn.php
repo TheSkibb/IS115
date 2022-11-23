@@ -136,31 +136,17 @@ a { text-decoration: none;
 
 <!--hoved siden -->
 <div class="hoved" >
-<?php      
-    include("forbindelse_logginn.php");  
-    $brukernavn = $_POST["bruker"];  
-    $passord = $_POST["passord"];  
-      
-        //to prevent from mysqli injection  
-        $brukernavn = stripcslashes($brukernavn);  
-        $passord = stripcslashes($passord);  
-        $brukernavn = mysqli_real_escape_string($con, $brukernavn);  
-        $passord = mysqli_real_escape_string($con, $passord);  
-      
-        $sql = " select *from login where brukernavn = '$brukernavn' and passord = '$passord'";  
-        $resultat = mysqli_query($con, $sql);  
-        $row = mysqli_fetch_array($resultat, MYSQLI_ASSOC);  
-        $count = mysqli_num_rows($resultat);  
-          
-        if($count == 1){  
-            echo "<h2>Vellykket innlogging</h2> <br><br>
-            <p><h3>Sjekk ut din profil: <a href='profil.php' style='text-decoration: none'>
-            <p>Profil </a></h3>";  
-        }  
-        else{  
-            echo "<h2>Innlogging feilet. Ugyldig brukernavn eller passord.</h2>";  
-        }     
-?>  
+  
+<p>Hey, 
+  <?php 
+  include("../lib/sesjon.php");
+
+  echo $_SESSION['username']; 
+  //echo $_SESSION['kjonn']; 
+  ?>!
+  <p><a href="loggut.php">Logout</a></p>
+    
+
 </div>
 </body>
 </html>

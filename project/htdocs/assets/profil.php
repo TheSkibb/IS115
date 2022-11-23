@@ -132,8 +132,16 @@ body {
 <!--hoved siden -->
 <div class="hoved" >
 <h2>Din profil</h2>
-  
-  </div>
+
+<?php
+include("../lib/forbindelse_logginn.php");
+include("../lib/sesjon.php");
+
+echo $_SESSION['username']; 
+
+?>
+
+</div>
 
 
 
