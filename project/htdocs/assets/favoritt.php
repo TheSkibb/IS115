@@ -12,7 +12,7 @@
 <body>
 <!--Navigasjonsbar  -->
 <?php require_once("./../lib/navbar.php");?>
-
+<?php require_once("./../lib/getFavoritter.php")?>
 
 
 
