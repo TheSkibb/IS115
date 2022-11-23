@@ -67,7 +67,7 @@ $favoriteLink =
       </div>
       <div id="delContainer" class="containerItem">
           <div><img id="shareIcon" class="clickable" src="../images/share.png" height="50px"></div>
-          <a href=<?php echo $favoriteLink?>>
+          <a href=<?php echo $favoriteLink?> id="favoriteLink">
             <div id="heartIcon" class="clickable" onclick="clickFavorite()">
               <?php echo $favorite == 0 ? '🤍' : '❤️️'?>
             </div>

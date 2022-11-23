@@ -94,3 +94,7 @@
 .clickable:hover {
   cursor: pointer;
 }
+
+#favoriteLink{
+  text-decoration: none;
+}
