@@ -19,6 +19,7 @@ create or replace table bruker(
   id int not null primary key auto_increment,
   fornavn varchar(255) not null,
   etternavn varchar(255) not null,
+  brukernavn varchar(255) not null,
   epost varchar(254) not null,
   brukerTypeId int, 
   kjonnId int,
@@ -93,6 +94,7 @@ insert into boligtype (boligtype) values('Enebolig');
 insert into bruker (
   fornavn,
   etternavn,
+  brukernavn,
   epost,
   brukerTypeId,
   kjonnId,
@@ -101,6 +103,7 @@ insert into bruker (
 ) values (
   'birger',
   'olsen',
+  'birgerOlsen',
   'birgerolsen@mail.com',
   1,
   1,
@@ -111,6 +114,7 @@ insert into bruker (
 insert into bruker (
   fornavn,
   etternavn,
+  brukernavn,
   epost,
   brukerTypeId,
   kjonnId,
@@ -119,6 +123,7 @@ insert into bruker (
 ) values (
   'kari',
   'svendsen',
+  'kar11',
   'kariSvendsen@mail.no',
   1,
   2,
@@ -129,6 +134,7 @@ insert into bruker (
 insert into bruker (
   fornavn,
   etternavn,
+  brukernavn,
   epost,
   brukerTypeId,
   kjonnId,
@@ -137,6 +143,7 @@ insert into bruker (
 ) values (
   'ola',
   'nordmann',
+  'N0rdMan',
   'olaNordmann@mail.com',
   2,
   1,
@@ -146,6 +153,7 @@ insert into bruker (
 insert into bruker (
   fornavn,
   etternavn,
+  brukernavn,
   epost,
   brukerTypeId,
   kjonnId,
@@ -154,6 +162,7 @@ insert into bruker (
 ) values (
   'nora',
   'aas',
+  'binbong',
   'noraAas@mail.no',
   2,
   2,
