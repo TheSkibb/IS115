@@ -5,7 +5,8 @@ class HjemAnnonse{
     $sql = "
     select annonser.id, tittel, kvadrat, leie, bildelenke, boligtype.boligtype
     from annonser
-    inner join boligtype on annonser.boligtype = boligtype.id";
+    inner join boligtype on annonser.boligtype = boligtype.id" . 
+    $filter;
     $sp = $pdo->prepare($sql);
     try{
       $sp->execute();
