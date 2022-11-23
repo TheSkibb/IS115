@@ -151,48 +151,65 @@ a { text-decoration: none;
   </div>
 </div>
 
-
-<!--hoved siden-->
 <div class="hoved">
 <h2>Registrer ny bruker</h2>
-  <form action="profil.php">
-    <label for="navn">Navn:</label><br>
-        <input type="text" id="navn" name="navn"><br><br>
-
-    <label for="epost">E-post:</label><br>
-        <input type="text" id="epost" name="epost"><br><br>
-    
-    <p>Hvilket kjønn?</p>
-        <input type="radio" id="kvinne" value="kvinne">
-        <label for="html">Kvinne</label><br>
+<?php
+    require('../lib/forbindelse_logginn.php');
+    // When form submitted, insert values into the database.
+    if (isset($_REQUEST['username'])) {
+        // removes backslashes
+        $username = stripslashes($_REQUEST['username']);
+        //escapes special characters in a string
+        $username = mysqli_real_escape_string($con, $username);
+        $email    = stripslashes($_REQUEST['email']);
+        $email    = mysqli_real_escape_string($con, $email);
+        $kjonn    = stripslashes($_REQUEST['kjonn']);
+        $kjonn    = mysqli_real_escape_string($con, $kjonn);
+        $password = stripslashes($_REQUEST['password']);
+        $password = mysqli_real_escape_string($con, $password);
+        $create_datetime = date("Y-m-d H:i:s");
+        $query    = "INSERT into `users` (username, password, email, create_datetime, kjonn)
+                     VALUES ('$username', '" . md5($password) . "', '$email', '$create_datetime', '$kjonn')";
+        $result   = mysqli_query($con, $query);
+        if ($result) {
+            echo "<div class='form'>
+                  <h3>You are registered successfully.</h3><br/>
+                  <p class='link'>Click here to <a href='logginn.php'>Login</a></p>
+                  </div>";
+        } else {
+            echo "<div class='form'>
+                  <h3>Required fields are missing.</h3><br/>
+                  <p class='link'>Click here to <a href='registrer.php'>registration</a> again.</p>
+                  </div>";
+        }
+    } else {
+?>
+    <form class="form" action="" method="post">
+        <input type="text" class="login-input" name="username" placeholder="Fullt navn" required />
+        <input type="text" class="login-input" name="email" placeholder="E-post">
+        <input type="password" class="login-input" name="password" placeholder="Passord">
         
-        <input type="radio" id="mann" value="mann">
-        <label for="css">Mann</label><br>
+        <label for="Gender">Kjønn</label>
+      <label class="radio-inline">
+        <input type="radio" name="kjonn"  value="mann" checked>
+        Mann </label>
+      <label class="radio-inline">
+        <input type="radio" name="kjonn"  value="kvinne">
+        Kvinne </label>
+        <label class="radio-inline">
+        <input type="radio" name="ikke_kjonn"  value="ikke_kjonn">
+        Ønsker ikke å oppgi </label>
 
-        <input type="radio" id="ikke_kjønn" value="ikke_kjønn">
-        <label for="css">Ønsker ikke å oppgi</label><br>
+   
 
-    <p>Velg om du er en utleier eller leier:</p>
-        <input type="radio" id="utleier" value="utleier">
-        <label for="html">Utleier</label><br>
-        
-        <input type="radio" id="leier" value="leier">
-        <label for="css">Leier</label><br> <br>
-    
-    <label for="beskrivelse_tekst">Beskrivelse av deg selv:</label></p>
-        <textarea id="beskrivelse" name="beskrivelse" rows="4" cols="50">Skriv litt informasjon om deg selv...
-        </textarea><br><br>
-    
-    <label for="passord">Passord</label><br>
-    <input type="text" id="passord" name="passord"><br><br>
+        <input type="submit" name="submit" value="Register" class="login-button">
+        <p class="link"><a href="logginn.php">Click to Login</a></p>
+    </form>
+<?php
+    }
+?>
+</div>
 
-    <label for="passord_gjenta">Gjenta passord</label><br>
-    <input type="text" id="passord_gjenta" name="passord_gjenta"><br><br>
-        
-    <button type=submit class="knapp">Send inn</button>
-
-</form> <br><br>
-<h3>Har du en konto? <a href="logginn.php" style="text-decoration: none">Logg inn </a></h3>
 
 </div>
 
