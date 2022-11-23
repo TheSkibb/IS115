@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Page Title</title>
-    <link rel="stylesheet" href="styles.css" />
+    <title>annonse</title>
+    <link rel="stylesheet" href="../static/stylesAnnonser.css" />
   </head>
 
 <?php
@@ -10,72 +10,81 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
     
-$information = array(
-  'bilde'=>"images/example.jpg",
-  'tittel'=>"Koselig hybel for studenter",
-  'bruker' => "Ola Jensen Rudolf Amunsen Sveinsson",
-  'infoListe'=>array(
-    "leie: 12 000kr",
-    "depositum: 24 000kr",
-    "strøm: inkludert",
-    "internett: ikke inkludert",
-    "dyr: ikke tillatt",
-    "røyking: ikke tillatt",
-  ),
-  'beskrivelse'=>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-);
+require_once("../lib/classes/annonse.php");
 
-function getImage($information){
-  echo $information['bilde'];
+if(!key_exists( 'annonse', $_GET)){
+  header("Location: 404.php");
 }
 
-function getTittel($information){
-  echo $information['tittel'];
+$annonse = new Annonse($_GET['annonse']);
+
+function getImage(){
+  global $annonse;
+  $annonse->getImage();
 }
 
-function getBruker($information){
-  echo $information['bruker'];
+function getTittel(){
+  global $annonse;
+  $annonse->getTittel();
 }
 
-function getBeskrivelse($information){
-  echo $information['beskrivelse'];
+function getBruker(){
+  global $annonse;
+  $annonse->getBruker();
 }
 
-function getInfoListe($information){
-  $output = "";
-  foreach($information['infoListe'] as $info){
-    $output .= "<li>" . $info . "</li>";
-  }
-  echo $output;
+function getBeskrivelse(){
+  global $annonse;
+  $annonse->getBeskrivelse();
 }
+
+function getInfoListe(){
+  global $annonse;
+  $annonse->getInfoListe();
+}
+
+//check if the annonse is a favorite or not
+$favorite = $annonse->isFavorite(1, $_GET['annonse']);
+
+$favoriteLink = 
+  '../lib/favorite.php' .
+  '?annonse=' . $_GET['annonse'] .
+  '&bruker=' . 1 .
+  '&favorite=' . $favorite
+;
 
 ?>
+
 
   <body>
     <div id="annonseContainer">
       <div id="bildeContainer" class="containerItem">
-        <img src=<?php getImage($information)?> height="300px">
+        <img src=<?php getImage($annonse)?> height="300px">
 
       </div>
       <div id="tittelContainer" class="containerItem">
-        <div id="tittel"><b><?php getTittel($information)?></b></b></div>
+        <div id="tittel"><b><?php getTittel($annonse)?></b></div>
       </div>
       <div id="delContainer" class="containerItem">
-          <div><img id="shareIcon" class="clickable" src=images/share.png height="50px"></div>
-          <div id="heartIcon" class="clickable" onclick="clickFavorite()">🤍</div>
+          <div><img id="shareIcon" class="clickable" src="../images/share.png" height="50px"></div>
+          <a href=<?php echo $favoriteLink?>>
+            <div id="heartIcon" class="clickable" onclick="clickFavorite()">
+              <?php echo $favorite == 0 ? '🤍' : '❤️️'?>
+            </div>
+          </a>
       </div>
       <div class="infoContainer containerItem">
         <div>
           <b>info om denne hybelen</b><br />
         <ul id="infoListe">
-          <?php getInfoListe($information)?>
+          <?php getInfoListe()?>
           </ul>
         </div>
       </div>
       <div id="brukerContainer" class="containerItem">
         <div id="brukerInfo">
-          <img id="brukerIcon" class="clickable" src=images/userIcon.jpg height="100px">
-          <div id="brukerNavn" class="clickable"><?php getBruker($information) ?></div>
+          <img id="brukerIcon" class="clickable" src="../images/userIcon.jpg" height="100px">
+          <div id="brukerNavn" class="clickable"><?php getBruker($annonse) ?></div>
         </div>
         <div id="sendMeldingKnappWrapper">
           <div id="sendMeldingKnapp" class="clickable">
@@ -87,7 +96,7 @@ function getInfoListe($information){
         <div id="beskrivelse">
           <b>Beskrivelse: </b><br/>
           <p id="beskrivelseText">
-          <?php getBeskrivelse($information)?>
+          <?php getBeskrivelse()?>
           </p>
         </div>
       </div>

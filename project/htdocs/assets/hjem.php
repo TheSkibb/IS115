@@ -383,32 +383,11 @@ body {
 
 <!--hoved siden, på høyre siden  -->
 <div class="hoved">
-<button class="knapp" style="font-size : 15px; width: 100%; height: 40%;">
-  <h2>Nydelig 3-roms leilighet til leie i Lund</h2>
-  <h5>80m<sup>2</sup>, 14.000 kr</h5>
-  <div class="bilde" style="height:200px;">Tekst</div>
-  <p>Leilighet, rom i bofelleskap, 3 soverom, balkong, garasje, heis</p>
-  <br>
-</button>
+<?php
+  include "./../lib/classes/hjemAnnonse.php";
+  HjemAnnonse::getAllAnnonser();
+?>
 
-
-<button class="knapp" style="font-size : 15px; width: 100%; height: 40%;">
-  <h2>Pen sentrumsnær leilighet i Kristiansand</h2>
-  <h5>60m<sup>2</sup>, 10.000 kr</h5>
-  <div class="bilde" style="height:200px;">Tekst</div>
-  <p>Hybel, 2 soverom, strøm</p>
-  <br>
-</button>
-
-<button class="knapp" style="font-size : 15px; width: 100%; height: 40%;">
-  <h2>Grim - lys og trivelig 2-roms med terrasse</h2>
-  <h5>50m<sup>2</sup>, 11.000 kr</h5>
-  <div class="bilde" style="height:200px;">Tekst</div>
-  <p>Leilighet, 2 soverom, P-plass, terrasse,  fullt møblert, kabel, heis</p>
-  <br>
-</button>
-
-  </div>
 </div>
 
 </body>
