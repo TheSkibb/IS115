@@ -1,4 +1,4 @@
-use project
+-- use project
 
 create or replace table kjonn(
   id int not null primary key auto_increment,
@@ -69,18 +69,18 @@ create or replace table poststed(
   poststed varchar(255)
 );
 
---insert values into tables:
+-- insert values into tables:
 
---kjonn
+-- kjonn
 insert into kjonn (kjonn) values ('mann');
 insert into kjonn (kjonn) values ('kvinne');
 insert into kjonn (kjonn) values ('annet');
 
---brukertype
+-- brukertype
 insert into brukerType (brukertype) values ('utleier');
 insert into brukerType (brukertype) values ('leietaker');
 
---boligtyper
+-- boligtyper
 insert into boligtype (boligtype) values('Enebolig');
 insert into boligtype (boligtype) values('Garasje/Parkering');
 insert into boligtype (boligtype) values('Hybel');
@@ -89,7 +89,7 @@ insert into boligtype (boligtype) values('Rekkehus');
 insert into boligtype (boligtype) values('Bofelleskap');
 insert into boligtype (boligtype) values('Enebolig');
 
---bruker
+-- bruker
 insert into bruker (
   fornavn,
   etternavn,
@@ -163,7 +163,7 @@ insert into bruker (
 
 
 
---annonser
+--  annonser
 insert into annonser (
   eier,
   gate,
