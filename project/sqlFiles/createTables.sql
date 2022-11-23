@@ -88,7 +88,6 @@ insert into boligtype (boligtype) values('Hybel');
 insert into boligtype (boligtype) values('Leilighet');
 insert into boligtype (boligtype) values('Rekkehus');
 insert into boligtype (boligtype) values('Bofelleskap');
-insert into boligtype (boligtype) values('Enebolig');
 
 -- bruker
 insert into bruker (
