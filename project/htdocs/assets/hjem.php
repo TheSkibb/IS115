@@ -8,7 +8,6 @@
 <?php
 if(isset($_REQUEST['filterSok'])){
   require_once("./../lib/createSearchFilter.php");
-  echo $searchFilter;
 }
 ?>
 
@@ -138,43 +137,43 @@ updateSliders()
     <p>Boligtype</p>
     <ul class="list">
       <li>
-        <input type="checkbox" name="enebolig" id="enebolig"/> 
+        <input type="checkbox" checked="true" name="enebolig" id="enebolig"/> 
         <label for="enebolig"> 
         Enebolig
         </label> 
       </li>
       <li>
-        <input type="checkbox" name="garasje/parkering" id="garasje/parkering"/> 
+        <input type="checkbox" checked="true" name="garasjeparkering" id="garasje/parkering"/> 
         <label for="garasje/parkering"> 
         Garasje/Parkering
         </label> 
       </li>
       <li>
-        <input type="checkbox" name="hybel" id="hybel"/> 
+        <input type="checkbox" checked="true" name="hybel" id="hybel"/> 
         <label for="hybel"> 
         Hybel
         </label> 
       </li>
       <li>
-        <input type="checkbox" name="leilighet" id="leilighet"/> 
+        <input type="checkbox" checked="true" name="leilighet" id="leilighet"/> 
         <label for="leilighet"> 
         Leilighet
         </label> 
       </li>
       <li>
-        <input type="checkbox" name="rekkehus" id="rekkehus"/> 
+        <input type="checkbox" checked="true" name="rekkehus" id="rekkehus"/> 
         <label for="rekkehus"> 
         Rekkehus
         </label> 
       </li>
       <li>
-        <input type="checkbox" name="bofelleskap" id="bofelleskap"/> 
+        <input type="checkbox" checked="true" name="bofelleskap" id="bofelleskap"/> 
         <label for="bofelleskap"> 
         Bofelleskap
         </label> 
       </li>
       <li>
-        <input type="checkbox" name="tomannsbolig" id="tomannsbolig"/> 
+        <input type="checkbox" checked="true" name="tomannsbolig" id="tomannsbolig"/> 
         <label for="tomannsbolig"> 
         Tomannsbolig
         </label> 
@@ -183,13 +182,13 @@ updateSliders()
     <p>
       <span>Andre Preferanser:</span><br>
       <ul>
-        <li><input type="checkbox" name="kollektiv">kollektiv</li>
-        <li><input type="checkbox" name="dyrTillatt">dyrTillatt</li>
-        <li><input type="checkbox" name="roykingTillatt">roykingTillatt</li>
-        <li><input type="checkbox" name="stromInkl">stromInkl</li>
-        <li><input type="checkbox" name="internettInkl">internettInkl</li>
-        <li><input type="checkbox" name="tvInkl">tvInkl</li>
-        <li><input type="checkbox" name="moblert">moblert<br></li>
+        <li><input type="checkbox" checked="true" name="kollektiv">kollektiv</li>
+        <li><input type="checkbox" checked="true" name="dyrTillatt">dyrTillatt</li>
+        <li><input type="checkbox" checked="true" name="roykingTillatt">roykingTillatt</li>
+        <li><input type="checkbox" checked="true" name="stromInkl">stromInkl</li>
+        <li><input type="checkbox" checked="true" name="internettInkl">internettInkl</li>
+        <li><input type="checkbox" checked="true" name="tvInkl">tvInkl</li>
+        <li><input type="checkbox" checked="true" name="moblert">moblert<br></li>
       </ul>
     </p>
     <p>
