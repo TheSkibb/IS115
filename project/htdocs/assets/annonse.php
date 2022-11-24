@@ -45,6 +45,15 @@ function getInfoListe(){
   $annonse->getInfoListe();
 }
 
+function getLeie(){
+  global $annonse;
+  $annonse->getLeie();
+}
+
+function getAddresse(){
+  global $annonse;
+  $annonse->getAddresse();
+}
 //check if the annonse is a favorite or not
 $favorite = $annonse->isFavorite(1, $_GET['annonse']);
 
@@ -66,6 +75,17 @@ $favoriteLink =
       </div>
       <div id="tittelContainer" class="containerItem">
         <div id="tittel"><b><?php getTittel($annonse)?></b></div>
+        <p><?php 
+          echo "Leie: ";
+          getLeie();
+          echo '/mnd';
+        ?></p>
+        <p>
+        <?php
+          echo 'Addresse: ';
+          getAddresse();
+        ?>
+        </p>
       </div>
       <div id="delContainer" class="containerItem">
           <div><img id="shareIcon" class="clickable" src="../images/share.png" height="50px"></div>
