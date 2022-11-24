@@ -8,4 +8,5 @@ favoritter,
 kjonn,
 postnummer, 
 poststed,
+meldinger,
 annonser;

@@ -1,4 +1,4 @@
--- use project
+use project
 
 create or replace table kjonn(
   id int not null primary key auto_increment,
@@ -68,6 +68,13 @@ create or replace table postnummer(
 create or replace table poststed(
   id int not null primary key,
   poststed varchar(255)
+);
+
+create or replace table meldinger(
+  id int not null,
+  frabruker int,
+  tilbruker int,
+  innhold varchar(255)
 );
 
 -- insert values into tables:
