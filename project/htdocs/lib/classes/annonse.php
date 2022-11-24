@@ -102,10 +102,8 @@ class Annonse {
     $sp->bindParam(':brukerId', $brukerId, PDO::PARAM_INT);
     $sp->bindParam(':annonseId', $annonseId, PDO::PARAM_INT);
     $brukerId = $bruker;
-    echo $brukerId;
 
     $annonseId = $annonse;
-    echo $annonseId;
 
     try{
       $sp->execute();
