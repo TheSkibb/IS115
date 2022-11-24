@@ -110,7 +110,7 @@ $favoriteLink =
         </div>
         <div id="sendMeldingKnappWrapper">
           <div id="sendMeldingKnapp" class="clickable">
-            Send melding
+            <a href="./melding.php" id="meldingBtn">Send melding</a>
           </div>
         </div>
       </div>
