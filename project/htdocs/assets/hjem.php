@@ -283,8 +283,15 @@ updateSliders()
 <!--hoved siden, på høyre siden  -->
 <div class="hoved">
 <?php
+
+  //vis annonser, om filter har blitt lagt med send med dette for når annonsene hentes ut
   include "./../lib/classes/hjemAnnonse.php";
-  HjemAnnonse::getAllAnnonser($searchFilter);
+  if (isset($_REQUEST['filterSok'])){
+    HjemAnnonse::getAllAnnonser($searchFilter);
+  }
+  else{
+    HjemAnnonse::getAllAnnonser();
+  }
 ?>
 
 </div>
