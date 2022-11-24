@@ -6,9 +6,29 @@
 <link rel="stylesheet" href="./../static/stylesHjem.css">
 
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 if(isset($_REQUEST['filterSok'])){
   require_once("./../lib/createSearchFilter.php");
 }
+function isChecked($boxName){
+  $output = '';
+  if(isset($_REQUEST['filterSok'])){
+    if(key_exists($boxName, $_REQUEST)){
+      $output .= 'checked="true"';
+    }
+    else{
+      $output .= '';
+    }
+  }
+  else{
+    $output .= 'checked="true"';
+  }
+  echo $output;
+}
+
+echo isChecked("enebolig");
 ?>
 
 </head>
@@ -27,12 +47,26 @@ if(isset($_REQUEST['filterSok'])){
       <input 
         type="number" 
         name="minPris" 
-        <?php echo 'value="' . $_REQUEST['minPris'] . '"'?>> 
+        <?php echo 'value="';
+          if(key_exists('minPris', $_REQUEST)){
+            echo $_REQUEST['minPris'] . '"';
+          }
+          else{
+            echo '"';
+          }
+        ?>> 
       min pris:<br>
       <input 
         type="number" 
         name="maksPris"
-        <?php echo 'value="' . $_REQUEST['maksPris'] . '"'?>> 
+        <?php echo 'value="';
+          if(key_exists('maxPris', $_REQUEST)){
+            echo $_REQUEST['maxPris'] . '"';
+          }
+          else{
+            echo '"';
+          }
+        ?>> 
           maks pris<br>
     </p>
 
@@ -42,13 +76,27 @@ if(isset($_REQUEST['filterSok'])){
         type="date" 
         name="startLeie" 
         id="startDate"
-        <?php echo 'value="' . $_REQUEST['startLeie'] . '"'?>
+        <?php echo 'value="';
+          if(key_exists('startLeie', $_REQUEST)){
+            echo $_REQUEST['startLeie'] . '"';
+          }
+          else{
+            echo '"';
+          }
+        ?> 
         onchange="validateDate()"> start leie<br>
       <input 
         type="date" 
         name="sluttLeie" 
         id="endDate"
-        <?php echo 'value="' . $_REQUEST['sluttLeie'] . '"'?>
+        <?php echo 'value="';
+          if(key_exists('sluttLeie', $_REQUEST)){
+            echo $_REQUEST['sluttLeie'] . '"';
+          }
+          else{
+            echo '"';
+          }
+        ?> 
         onchange="validateDate()"> slutt leie<br>
       <span id="dateErrorText" style="color: red"></span>
     </p>
@@ -137,43 +185,71 @@ updateSliders()
     <p>Boligtype</p>
     <ul class="list">
       <li>
-        <input type="checkbox" checked="true" name="enebolig" id="enebolig"/> 
+        <input 
+              type="checkbox" 
+        <?php echo isChecked("enebolig");?>
+              name="enebolig"
+              id="enebolig"/> 
         <label for="enebolig"> 
         Enebolig
         </label> 
       </li>
       <li>
-        <input type="checkbox" checked="true" name="garasjeparkering" id="garasje/parkering"/> 
+        <input 
+          type="checkbox" 
+          <?php echo isChecked("garasjeparkering");?>
+          name="garasjeparkering"
+          id="garasje/parkering"/> 
         <label for="garasje/parkering"> 
         Garasje/Parkering
         </label> 
       </li>
       <li>
-        <input type="checkbox" checked="true" name="hybel" id="hybel"/> 
+        <input 
+          type="checkbox" 
+          <?php echo isChecked("hybel");?>
+          name="hybel" 
+          id="hybel"/> 
         <label for="hybel"> 
         Hybel
         </label> 
       </li>
       <li>
-        <input type="checkbox" checked="true" name="leilighet" id="leilighet"/> 
+        <input 
+          type="checkbox" 
+          <?php echo isChecked("leilighet");?>
+          name="leilighet" 
+          id="leilighet"/> 
         <label for="leilighet"> 
         Leilighet
         </label> 
       </li>
       <li>
-        <input type="checkbox" checked="true" name="rekkehus" id="rekkehus"/> 
+        <input 
+          type="checkbox" 
+          <?php echo isChecked("rekkehus");?>
+          name="rekkehus" 
+          id="rekkehus"/> 
         <label for="rekkehus"> 
         Rekkehus
         </label> 
       </li>
       <li>
-        <input type="checkbox" checked="true" name="bofelleskap" id="bofelleskap"/> 
+        <input 
+          type="checkbox" 
+          <?php echo isChecked("bofelleskap");?>
+          name="bofelleskap" 
+          id="bofelleskap"/> 
         <label for="bofelleskap"> 
         Bofelleskap
         </label> 
       </li>
       <li>
-        <input type="checkbox" checked="true" name="tomannsbolig" id="tomannsbolig"/> 
+        <input 
+          type="checkbox" 
+          <?php echo isChecked("tomannsbolig");?>
+          name="tomannsbolig" 
+          id="tomannsbolig"/> 
         <label for="tomannsbolig"> 
         Tomannsbolig
         </label> 
@@ -182,13 +258,13 @@ updateSliders()
     <p>
       <span>Andre Preferanser:</span><br>
       <ul>
-        <li><input type="checkbox" checked="true" name="kollektiv">kollektiv</li>
-        <li><input type="checkbox" checked="true" name="dyrTillatt">dyrTillatt</li>
-        <li><input type="checkbox" checked="true" name="roykingTillatt">roykingTillatt</li>
-        <li><input type="checkbox" checked="true" name="stromInkl">stromInkl</li>
-        <li><input type="checkbox" checked="true" name="internettInkl">internettInkl</li>
-        <li><input type="checkbox" checked="true" name="tvInkl">tvInkl</li>
-        <li><input type="checkbox" checked="true" name="moblert">moblert<br></li>
+        <li><input type="checkbox" <?php echo isChecked("kollektiv");?> name="kollektiv">kollektiv</li>
+        <li><input type="checkbox" <?php echo isChecked("dyrTillatt");?> name="dyrTillatt">dyrTillatt</li>
+        <li><input type="checkbox" <?php echo isChecked("roykingTillatt");?> name="roykingTillatt">roykingTillatt</li>
+        <li><input type="checkbox" <?php echo isChecked("stromInkl");?> name="stromInkl">stromInkl</li>
+        <li><input type="checkbox" <?php echo isChecked("internettInkl");?> name="internettInkl">internettInkl</li>
+        <li><input type="checkbox" <?php echo isChecked("tvInkl");?> name="tvInkl">tvInkl</li>
+        <li><input type="checkbox" <?php echo isChecked("moblert");?> name="moblert">moblert<br></li>
       </ul>
     </p>
     <p>
