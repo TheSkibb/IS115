@@ -27,9 +27,7 @@ else if($_GET['bruker'] == $user){
 
 <div id="meldingContainer">
   <h1>Meldinger med Bruker</h1>
-  <div id="senderDiv">avsender</div>
-  <div id="receiverDiv">Deg</div>
-  <div id="chatDiv">
+<div id="chatDiv">
 <?php
   getMeldinger($user, $_GET['bruker']);
 ?>
@@ -38,8 +36,8 @@ else if($_GET['bruker'] == $user){
     <input type="text" name="meldingInnhold" placeholder="...">
     <button type="submit" name="lastOppMelding">Send melding</button>
 <?php
-    echo '<input type=hidden value=1 name=frabruker>';
-    echo '<input type=hidden value=2 name=tilbruker>';
+    echo '<input type=hidden value="' . $user . '" name=frabruker>';
+    echo '<input type=hidden value="' . $_GET['bruker'] . '" name=tilbruker>';
 ?>
   </form>
 </div>

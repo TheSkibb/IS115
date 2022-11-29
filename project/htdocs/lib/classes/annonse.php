@@ -56,7 +56,7 @@ class Annonse {
         'brukerId'=>$results[0]->eier
       );
 
-      var_dump($this->information);
+      //var_dump($this->information);
     }
     else{
     }
@@ -93,7 +93,7 @@ class Annonse {
   }
 
   function getBrukerId(){
-    echo $this->information['brukerId'];
+    return $this->information['brukerId'];
   }
 
   function getBeskrivelse(){
