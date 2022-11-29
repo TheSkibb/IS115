@@ -26,6 +26,8 @@ class Annonse {
     exit();
     }
 
+    //var_dump($results);
+
     //put informasjonen fra sql query i array
     if(sizeof($results) > 0){
       $this->information = array(
@@ -51,7 +53,10 @@ class Annonse {
         'leie'=>$results[0]->leie,
         'gate'=>$results[0]->gate,
         'postnummer'=>$results[0]->postnummer,
+        'brukerId'=>$results[0]->eier
       );
+
+      var_dump($this->information);
     }
     else{
     }
@@ -85,6 +90,10 @@ class Annonse {
 
   function getBruker(){
     echo $this->information['bruker'];
+  }
+
+  function getBrukerId(){
+    echo $this->information['brukerId'];
   }
 
   function getBeskrivelse(){

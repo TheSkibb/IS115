@@ -54,6 +54,13 @@ function getAddresse(){
   global $annonse;
   $annonse->getAddresse();
 }
+
+function getMeldingLink(){
+  global $annonse;
+  $id = $annonse->getBrukerId();
+  echo 'href="./melding.php?bruker=' . '2"';
+}
+
 //check if the annonse is a favorite or not
 $favorite = $annonse->isFavorite(1, $_GET['annonse']);
 
@@ -63,7 +70,6 @@ $favoriteLink =
   '&bruker=' . 1 .
   '&favorite=' . $favorite
 ;
-
 ?>
 
 
@@ -110,7 +116,7 @@ $favoriteLink =
         </div>
         <div id="sendMeldingKnappWrapper">
           <div id="sendMeldingKnapp" class="clickable">
-            <a href="./melding.php" id="meldingBtn">Send melding</a>
+            <a <?php getMeldingLink()?> id="meldingBtn">Send melding</a>
           </div>
         </div>
       </div>

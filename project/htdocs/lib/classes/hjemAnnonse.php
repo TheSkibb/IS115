@@ -31,7 +31,7 @@ class HjemAnnonse{
       }
     }
     else{
-      echo 'finner ingen resultater som møter dine søkeparametre';
+      echo 'fant ingen resultater';
     }
   }
   
