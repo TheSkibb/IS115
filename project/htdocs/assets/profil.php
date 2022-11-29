@@ -4,147 +4,50 @@
 <title>Profil</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- Utseende til søkeikonet -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-<style>
-* {
-  box-sizing: border-box;
-}
-
-/* Utseende på "bodyen" */
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  margin: 0;
-}
-
-/* Hoved kolonne */
-.hoved {   
-  -ms-flex: 70%; /* IE10 */
-  flex: 70%;
-  background-color: white;
-  padding: 20px;
-  margin:0 auto; text-align:center;
-  height: 100%; /* Fortsetter fargene videre */
-
-}
-
-/* Bilde */
-.bilde {
-  background-color: #aaa;
-  width: 100%;
-  padding: 20px;
-}
-
-/* Navigasjonsbar utseende*/
-.topnav {
-  overflow: hidden;
-  background-color: #FFF4DA;
-}
-
-/* Navigasjonsbar utseende skrift, plassering etc.*/
-.topnav a {
-  float: left;
-  display: block;
-  color: black;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-}
-
-/* Navigasjonsbar hover utseende, alt annet enn hovedknappen*/
-.topnav a:hover {
-  background-color: #FFDBB7;
-  color: black;
-}
-
-/* Navigasjonsbar hovedknapp utseende*/
-.topnav a.active {
-  background-color: #FFEAB7;
-  color: black;
-}
-
-/* Navigasjonsbar søkeknapp plassering*/
-.topnav .sokeknapp {
-  float: right;
-}
-
-/* Navigasjonsbar str*/
-.topnav input[type=text] {
-  padding: 6px;
-  margin-top: 8px;
-  font-size: 17px;
-  border: none;
-}
-/* Navigasjonsbar søkeknapp str*/
-.topnav .sokeknapp button {
-  float: right;
-  padding: 6px 10px;
-  margin-top: 8px;
-  margin-right: 16px;
-  background: #FFEAB7;
-  font-size: 17px;
-  border: none;
-  cursor: pointer;
-}
-
-/* Navigasjonsbar søkeknapp hover*/
-.topnav .sokeknapp button:hover {
-  background: #FFDBB7;
-}
-
-/* Navigasjonsbar str*/
-@media screen and (max-width: 600px) {
-  .topnav .sokeknapp {
-    float: none;
-  }
-  .topnav a, .topnav input[type=text], .topnav .sokeknapp button {
-    float: none;
-    display: block;
-    text-align: left;
-    width: 100%;
-    margin: 0;
-    padding: 14px;
-  }
-  .topnav input[type=text] {
-    border: 1px solid #ccc;  
-  }
-}
-</style>
-</head>
-<body>
-<!--Navigasjonsbar  -->
-<div class="topnav">
-  <a class="active" href="hjem.php">Hjem</a>
-  <a href="profil.php">Profil</a>
-  <a href="favoritt.php">♥</a>
-  <a href="logginn.php">Logg inn</a>
-  <div class="sokeknapp">
-    <form action="sok.php">
-      <input type="text" placeholder="Søk.." name="search">
-      <button type="submit"><i class="fa fa-search"></i></button>
-    </form>
-  </div>
-</div>
-
+<?php
+include("../static/utforming.php");
+include("../lib/sesjon.php");
+?>
 
 <!--hoved siden -->
 <div class="hoved" >
-<h2>Din profil</h2>
 
+<h1>Velkommen <?php echo $loggedin_session; ?>,</h1>
+Du er nå logget inn.
 <?php
-include("../lib/forbindelse_logginn.php");
-include("../lib/sesjon.php");
-
-echo $_SESSION['username']; 
-
+$sql="SELECT * FROM bruker where id=$loggedin_id";
+$result=mysqli_query($con,$sql);
+?>
+<?php
+while($rows=mysqli_fetch_array($result)){
 ?>
 
+<form action="" method="POST"><br>
+<table border="0" align="center" cellpadding="2" cellspacing="0">
+
+<tr id="lg-1">
+<td class="tl-1"><div align="left" id="tb-name">Brukernavn:</div></td>
+<td class="tl-4"><?php echo $rows['brukernavn']; ?></td>
+</tr>
+<tr id="lg-1">
+<td class="tl-1"><div align="left" id="tb-name">Fullt navn:</div></td>
+<td class="tl-4"><?php echo $rows['fornavn']; ?> <?php echo $rows['etternavn']; ?></td>
+</tr>
+<tr id="lg-1">
+<td class="tl-1"><div align="left" id="tb-name">E-post:</div></td>
+<td class="tl-4"><?php echo $rows['epost']; ?></td>
+</tr>
+</table>
+</form>
+<br>
+<div id="st"><a href="loggut.php" id="st-btn">Logg ut</a></div><br>
+<div id="st"><a href="slett_konto.php" id="st-btn">Slett konto</a></div>
 </div>
-
-
-
+</div>
+<?php 
+// lukker while loop-en
+}
+?>
 
 </body>
 </html>
