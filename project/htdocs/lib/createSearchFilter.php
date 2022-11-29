@@ -30,10 +30,6 @@ if($_REQUEST["maxSize"]){
   $searchFilter .= " and kvadrat < " . $_REQUEST['maxSize'];
 }
 
-if(key_exists('enebolig', $_REQUEST)){
-  echo 'test';
-}
-
 $boligtyper = array(
   "enebolig",
   "garasjeparkering",
