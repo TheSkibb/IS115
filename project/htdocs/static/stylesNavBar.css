@@ -1,0 +1,75 @@
+/* Navigasjonsbar utseende*/
+.topnav {
+  overflow: hidden;
+  background-color: #FFF4DA;
+}
+
+/* Navigasjonsbar utseende skrift, plassering etc.*/
+.topnav a {
+  float: left;
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Navigasjonsbar hover utseende, alt annet enn hovedknappen*/
+.topnav a:hover {
+  background-color: #FFDBB7;
+  color: black;
+}
+
+/* Navigasjonsbar hovedknapp utseende*/
+.topnav a.active {
+  background-color: #FFEAB7;
+  color: black;
+}
+
+/* Navigasjonsbar søkeknapp plassering*/
+.topnav .sokeknapp {
+  float: right;
+}
+
+/* Navigasjonsbar str*/
+.topnav input[type=text] {
+  padding: 6px;
+  margin-top: 8px;
+  font-size: 17px;
+  border: none;
+}
+/* Navigasjonsbar søkeknapp str*/
+.topnav .sokeknapp button {
+  float: right;
+  padding: 6px 10px;
+  margin-top: 8px;
+  margin-right: 16px;
+  background: #FFEAB7;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Navigasjonsbar søkeknapp hover*/
+.topnav .sokeknapp button:hover {
+  background: #FFDBB7;
+}
+
+/* Navigasjonsbar str*/
+@media screen and (max-width: 600px) {
+  .topnav .sokeknapp {
+    float: none;
+  }
+  .topnav a, .topnav input[type=text], .topnav .sokeknapp button {
+    float: none;
+    display: block;
+    text-align: left;
+    width: 100%;
+    margin: 0;
+    padding: 14px;
+  }
+  .topnav input[type=text] {
+    border: 1px solid #ccc;  
+  }
+}

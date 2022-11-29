@@ -3,6 +3,7 @@
   <head>
     <title>annonse</title>
     <link rel="stylesheet" href="../static/stylesAnnonser.css" />
+    <link rel="stylesheet" href="../static/stylesNavBar.css" />
   </head>
 
 <?php
@@ -11,6 +12,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
     
 require_once("../lib/classes/annonse.php");
+require_once("./../lib/navbar.php");
 
 if(!key_exists( 'annonse', $_GET)){
   header("Location: 404.php");
@@ -43,6 +45,22 @@ function getInfoListe(){
   $annonse->getInfoListe();
 }
 
+function getLeie(){
+  global $annonse;
+  $annonse->getLeie();
+}
+
+function getAddresse(){
+  global $annonse;
+  $annonse->getAddresse();
+}
+
+function getMeldingLink(){
+  global $annonse;
+  $id = $annonse->getBrukerId();
+  echo 'href="./melding.php?bruker=' . '2"';
+}
+
 //check if the annonse is a favorite or not
 $favorite = $annonse->isFavorite(1, $_GET['annonse']);
 
@@ -52,7 +70,6 @@ $favoriteLink =
   '&bruker=' . 1 .
   '&favorite=' . $favorite
 ;
-
 ?>
 
 
@@ -64,6 +81,17 @@ $favoriteLink =
       </div>
       <div id="tittelContainer" class="containerItem">
         <div id="tittel"><b><?php getTittel($annonse)?></b></div>
+        <p><?php 
+          echo "Leie: ";
+          getLeie();
+          echo '/mnd';
+        ?></p>
+        <p>
+        <?php
+          echo 'Addresse: ';
+          getAddresse();
+        ?>
+        </p>
       </div>
       <div id="delContainer" class="containerItem">
           <div><img id="shareIcon" class="clickable" src="../images/share.png" height="50px"></div>
@@ -88,7 +116,7 @@ $favoriteLink =
         </div>
         <div id="sendMeldingKnappWrapper">
           <div id="sendMeldingKnapp" class="clickable">
-            Send melding
+            <a <?php getMeldingLink()?> id="meldingBtn">Send melding</a>
           </div>
         </div>
       </div>

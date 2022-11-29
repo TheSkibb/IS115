@@ -4,6 +4,7 @@ class Annonse {
   function __construct($annonseId){
     require_once('./../lib/database.inc.php');
 
+    //hent alt fra annonser table
     $sql ="select *, 
     boligtype.boligtype,
     bruker.fornavn,
@@ -25,6 +26,9 @@ class Annonse {
     exit();
     }
 
+    //var_dump($results);
+
+    //put informasjonen fra sql query i array
     if(sizeof($results) > 0){
       $this->information = array(
         'bilde'=>"./../images/" . $results[0]->bildelenke,
@@ -46,7 +50,13 @@ class Annonse {
           self::displayInfo($results[0]->kvadrat, "kvadratmeter: ")
         ),
         'beskrivelse'=>$results[0]->beskrivelse,
+        'leie'=>$results[0]->leie,
+        'gate'=>$results[0]->gate,
+        'postnummer'=>$results[0]->postnummer,
+        'brukerId'=>$results[0]->eier
       );
+
+      var_dump($this->information);
     }
     else{
     }
@@ -82,8 +92,20 @@ class Annonse {
     echo $this->information['bruker'];
   }
 
+  function getBrukerId(){
+    echo $this->information['brukerId'];
+  }
+
   function getBeskrivelse(){
     echo $this->information['beskrivelse'];
+  }
+
+  function getLeie(){
+    echo $this->information['leie'];
+  }
+  
+  function getAddresse(){
+    echo $this->information['gate'] . ' ' . $this->information['postnummer'];
   }
 
   function getInfoListe(){
@@ -102,10 +124,8 @@ class Annonse {
     $sp->bindParam(':brukerId', $brukerId, PDO::PARAM_INT);
     $sp->bindParam(':annonseId', $annonseId, PDO::PARAM_INT);
     $brukerId = $bruker;
-    echo $brukerId;
 
     $annonseId = $annonse;
-    echo $annonseId;
 
     try{
       $sp->execute();

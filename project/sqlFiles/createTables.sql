@@ -71,10 +71,11 @@ create or replace table poststed(
 );
 
 create or replace table meldinger(
-  id int not null,
+  id int not null primary key auto_increment,
   frabruker int,
   tilbruker int,
-  innhold varchar(255)
+  innhold varchar(255),
+  dato datetime default current_timestamp
 );
 
 -- insert values into tables:
@@ -362,3 +363,49 @@ insert into annonser (
   40,
   "apartment4.jpg"
 );
+
+-- meldinger
+
+insert into meldinger (
+  frabruker, 
+  tilbruker, 
+  innhold,
+  dato) values (
+  1,
+  2,
+  'hei! jeg har veldig lyst til å leie denne leiligheten',
+  '022-11-29 09:30:46'
+);
+
+insert into meldinger (
+  frabruker, 
+  tilbruker, 
+  innhold,
+  dato) values (
+  2,
+  1,
+  'heisann sveissan, denne leiligheten er dessverre allerede leid ut til noen andre',
+  '022-11-29 09:30:47'
+);
+
+insert into meldinger (
+  frabruker, 
+  tilbruker, 
+  innhold,
+  dato) values (
+  1,
+  2,
+  'oi! det var synd, jeg skulle ønske jeg fikk leie den, den så sååååååå fin ut',
+  '022-11-29 09:30:48'
+);
+
+insert into meldinger (
+  frabruker, 
+  tilbruker, 
+  innhold,
+  dato) values (
+  2,
+  1,
+  'ja, bedre lykke neste gang, de flytter nok ut så fort de finner at det er mugg i veggene :-)',
+  '022-11-29 09:30:49'
+)
