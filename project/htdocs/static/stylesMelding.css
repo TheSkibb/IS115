@@ -1,0 +1,30 @@
+#meldingContainer{
+  
+}
+
+#chatDiv{
+  background-color: lightgray;
+  overflow-y: scroll;
+  height: 500px;
+  max-height: 100%;
+}
+
+.meldingLeft{
+  text-align: left;
+}
+
+.meldingRight{
+  text-align: right;
+}
+
+.meldingDiv{
+  height: 50px;
+}
+
+#senderDiv{
+  text-align: left;
+}
+
+#receiverDiv{
+  text-align: right;
+}
