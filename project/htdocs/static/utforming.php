@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Godkjenning</title>
+<title>Profil</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Utseende til søkeikonet -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<style>
-* {
+<style>* {
   box-sizing: border-box;
 }
 
@@ -16,6 +15,7 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
+  height: 100px; /* Fortsetter fargene videre */
 }
 
 /* Hoved kolonne */
@@ -26,14 +26,6 @@ body {
   padding: 20px;
   margin:0 auto; text-align:center;
   height: 100%; /* Fortsetter fargene videre */
-
-}
-
-/* Bilde */
-.bilde {
-  background-color: #aaa;
-  width: 100%;
-  padding: 20px;
 }
 
 /* Navigasjonsbar utseende*/
@@ -133,20 +125,5 @@ a { text-decoration: none;
   </div>
 </div>
 
-
-<!--hoved siden -->
-<div class="hoved" >
-  
-<p>Hey, 
-  <?php 
-  include("../lib/sesjon.php");
-
-  echo $_SESSION['username']; 
-  //echo $_SESSION['kjonn']; 
-  ?>!
-  <p><a href="loggut.php">Logout</a></p>
-    
-
-</div>
 </body>
 </html>
