@@ -32,9 +32,11 @@ else if($_GET['bruker'] == $user){
   getMeldinger($user, $_GET['bruker']);
 ?>
   </div>
-  <form method="post" action="./../lib/sendMelding.php">
-    <input type="text" name="meldingInnhold" placeholder="...">
-    <button type="submit" name="lastOppMelding">Send melding</button>
+  <div>
+  <form method="post" action="./../lib/sendMelding.php" id="meldingForm">
+    <input type="text" name="meldingInnhold" placeholder="..." id="innholdInp">
+    <button type="submit" name="lastOppMelding" id="submitBtn">Send melding</button>
+  </div>
 <?php
     echo '<input type=hidden value="' . $user . '" name=frabruker>';
     echo '<input type=hidden value="' . $_GET['bruker'] . '" name=tilbruker>';
