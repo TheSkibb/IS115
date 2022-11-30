@@ -51,7 +51,7 @@ function getMeldinger($receiver, $sender){
 //$frabruker int, brukeren som sender meldingen (den innloggede brukeren)
 //$innhold string, innholdet meldingen skal inneholde
 function sendMelding($tilbruker, $frabruker, $innhold){
-  require_once('./../lib/database.inc.php');
+  require('./../lib/database.inc.php');
   $sql = 'insert into meldinger(
     frabruker,
     tilbruker,
@@ -61,6 +61,14 @@ function sendMelding($tilbruker, $frabruker, $innhold){
     :tilbruker,
     :innhold
   )';
+
+  $pdo = new PDO($dkn, $DB_BRUKER, $DB_PASS);
+  try{
+    $sp = $pdo->prepare($sql);
+  }
+  catch(PDOException $e){
+    echo 'noe feil skjedde';
+  }
 
   $sp = $pdo->prepare($sql);
 
