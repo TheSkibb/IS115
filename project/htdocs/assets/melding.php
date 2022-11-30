@@ -17,7 +17,6 @@ require_once('./../lib/meldinger.php');
 
 session_start();
 if(key_exists('userId', $_SESSION)){
-  echo 'success';
   $user = $_SESSION['userId'];
 }
 else{
