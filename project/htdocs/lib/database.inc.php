@@ -12,8 +12,9 @@ $DB_NAVN = "project";
 
 $dkn = "mysql:host=" . $DB_VERT . "; dbname=" . $DB_NAVN;
 
+/*
 try{
-  $pdo = new PDO($dkn, $DB_BRUKER, $DB_PASS);
+  //$pdo = new PDO($dkn, $DB_BRUKER, $DB_PASS);
 }
 catch(PDOException $e){
   echo "feil ved tilkobling til db
@@ -22,4 +23,5 @@ catch(PDOException $e){
 
 ";
 }
+*/
 ?>

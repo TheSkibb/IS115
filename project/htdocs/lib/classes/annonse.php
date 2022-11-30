@@ -2,7 +2,7 @@
 class Annonse {
  private $information;
   function __construct($annonseId){
-    require_once('./../lib/database.inc.php');
+    require('./../lib/database.inc.php');
 
     //hent alt fra annonser table
     $sql ="select *, 
@@ -13,6 +13,15 @@ class Annonse {
     inner join boligtype on annonser.boligtype = boligtype.id
     inner join bruker on annonser.eier = bruker.id
     where annonser.id=:id";
+
+    $pdo = new PDO($dkn, $DB_BRUKER, $DB_PASS);
+    try{
+      $sp = $pdo->prepare($sql);
+    }
+    catch(PDOException $e){
+      echo 'noe feil skjedde';
+    }
+
     $sp = $pdo->prepare($sql);
     $sp->bindParam(':id', $id, PDO::PARAM_INT);
     $id = $annonseId;
@@ -118,8 +127,16 @@ class Annonse {
     echo $output;
   }
   function isFavorite($bruker, $annonse){
-    include "../lib/database.inc.php";
+    require("../lib/database.inc.php");
     $sql = "select * from favoritter where brukerId = :brukerId and annonseId = :annonseId ";
+    $pdo = new PDO($dkn, $DB_BRUKER, $DB_PASS);
+    try{
+      $sp = $pdo->prepare($sql);
+    }
+    catch(PDOException $e){
+      echo 'noe feil skjedde';
+    }
+
     $sp = $pdo->prepare($sql);
     $sp->bindParam(':brukerId', $brukerId, PDO::PARAM_INT);
     $sp->bindParam(':annonseId', $annonseId, PDO::PARAM_INT);

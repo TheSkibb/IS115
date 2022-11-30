@@ -10,10 +10,9 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+
 require_once("./../lib/navbar.php");
 require_once('./../lib/meldinger.php');
-
-
 
 session_start();
 if(key_exists('userId', $_SESSION)){
@@ -35,7 +34,7 @@ else if($_GET['bruker'] == $user){
 ?>
 
 <div id="meldingContainer">
-  <h1>Meldinger med Bruker</h1>
+  <h1>Meldinger med <?php require_once('./../lib/getUser.php')?></h1>
 <div id="chatDiv">
 <?php
   getMeldinger($user, $_GET['bruker']);

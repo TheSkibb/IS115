@@ -3,11 +3,18 @@
 //sender int, brukeren som den innloggede brukeren vil se meldingene mellom
 //printer liste med meldinger mellom $receiver og $sender
 function getMeldinger($receiver, $sender){
-  require_once('./../lib/database.inc.php');
+  require('./../lib/database.inc.php');
   $sql = 'select * from meldinger where 
   (frabruker = :sender and tilbruker = :receiver) or 
   (frabruker = :receiver and tilbruker = :sender) 
   order by dato asc';
+  $pdo = new PDO($dkn, $DB_BRUKER, $DB_PASS);
+  try{
+    $sp = $pdo->prepare($sql);
+  }
+  catch(PDOException $e){
+    echo 'noe feil skjedde';
+  }
   $sp = $pdo->prepare($sql);
 
   $sp->bindParam(':sender', $sender, PDO::PARAM_INT);
