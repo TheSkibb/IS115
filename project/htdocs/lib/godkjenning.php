@@ -6,6 +6,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 #include("../static/utforming.php");
 include("../lib/database.php");
 #require('../lib/sesjon.php');
@@ -31,6 +34,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 	$count=mysqli_num_rows($result);
 	if($count==1) {
 		$_SESSION['login_user']=$brukernavn;
+    $_SESSION['userId']=$row["id"];
 		header("location: profil.php");
 	}
 }
