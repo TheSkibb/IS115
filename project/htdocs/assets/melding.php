@@ -17,7 +17,6 @@ require_once('./../lib/meldinger.php');
 session_start();
 if(key_exists('userId', $_SESSION)){
   $user = $_SESSION['userId'];
-  echo $user;
 }
 else{
   header('Location: ../assets/logginn.php');
