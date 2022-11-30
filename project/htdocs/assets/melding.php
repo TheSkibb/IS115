@@ -14,6 +14,15 @@ require_once("./../lib/navbar.php");
 require_once('./../lib/meldinger.php');
 
 $user = 1;
+
+session_start();
+if(key_exists('userId', $_SESSION)){
+  echo 'success';
+}
+else{
+  header('Location: ../assets/logginn.php');
+}
+
 if(!key_exists('bruker', $_GET)){
   header('Location: hjem.php');
   exit();
