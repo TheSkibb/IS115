@@ -13,11 +13,12 @@ error_reporting(E_ALL);
 require_once("./../lib/navbar.php");
 require_once('./../lib/meldinger.php');
 
-$user = 1;
+
 
 session_start();
 if(key_exists('userId', $_SESSION)){
   echo 'success';
+  $user = $_SESSION['userId'];
 }
 else{
   header('Location: ../assets/logginn.php');
