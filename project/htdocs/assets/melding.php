@@ -35,7 +35,7 @@ else if($_GET['bruker'] == $user){
 ?>
 
 <div id="meldingContainer">
-  <h1>Meldinger med <?php require_once('./../lib/getUser.php'); getUser($_GET['bruker']); ?></h1>
+  <h1>Meldinger med <?php require_once('./../lib/getUserInfo.php'); getUserNameFromId($_GET['bruker']); ?></h1>
 <div id="chatDiv">
 <?php
   getMeldinger($user, $_GET['bruker']);

@@ -1,5 +1,5 @@
 <?php
-function getUser($id){
+function getUserNameFromId($id){
   require('./../lib/database.inc.php');
   $sql = 'select fornavn, etternavn from bruker where id = :id';
   $pdo = new PDO($dkn, $DB_BRUKER, $DB_PASS);
@@ -27,8 +27,9 @@ function getUser($id){
   else{
     echo '';
   }
+
+
   
 }
 
-getUser(1);
 ?>
