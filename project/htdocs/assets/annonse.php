@@ -68,7 +68,7 @@ function getAddresse(){
 function getMeldingLink(){
   global $annonse;
   $id = $annonse->getBrukerId();
-  echo 'href="./melding.php?bruker=' . '2"';
+  echo 'href="./melding.php?bruker=' . $id . '"';
 }
 
 //check if the annonse is a favorite or not
