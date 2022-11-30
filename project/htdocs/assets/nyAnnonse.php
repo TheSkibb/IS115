@@ -24,7 +24,6 @@ else{
 
 //if post request is sent
 if(isset($_REQUEST['registrerHybel'])){
-  var_dump($_REQUEST);
 
   require_once("./../lib/database.inc.php");
 
@@ -110,7 +109,6 @@ if(isset($_REQUEST['registrerHybel'])){
   $sp->bindParam(':badAnt', $badAnt, PDO::PARAM_INT);
   $sp->bindParam(':kvadrat', $kvadrat, PDO::PARAM_INT);
   $sp->bindParam(':bildelenke', $bildelenke, PDO::PARAM_STR);
-
 
   $addresse = $_REQUEST['Gate'];
   $postnummer = $_REQUEST['Postnummer'];

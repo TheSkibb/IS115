@@ -17,6 +17,7 @@ require_once('./../lib/meldinger.php');
 session_start();
 if(key_exists('userId', $_SESSION)){
   $user = $_SESSION['userId'];
+  echo $user;
 }
 else{
   header('Location: ../assets/logginn.php');
@@ -34,7 +35,7 @@ else if($_GET['bruker'] == $user){
 ?>
 
 <div id="meldingContainer">
-  <h1>Meldinger med <?php require_once('./../lib/getUser.php')?></h1>
+  <h1>Meldinger med <?php require_once('./../lib/getUser.php'); getUser($_GET['bruker']); ?></h1>
 <div id="chatDiv">
 <?php
   getMeldinger($user, $_GET['bruker']);
