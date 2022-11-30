@@ -74,10 +74,6 @@ if(isset($_REQUEST['registrerHybel'])){
     :bildelenke
     )";
 
-  echo 'test';
-  echo $_REQUEST['startLeie'];
-  echo $_REQUEST['sluttLeie'];
-
   $pdo = new PDO($dkn, $DB_BRUKER, $DB_PASS);
   try{
     $sp = $pdo->prepare($sql);
@@ -116,21 +112,105 @@ if(isset($_REQUEST['registrerHybel'])){
   $depositum = $_REQUEST['Depositum'];
   $tittel = $_REQUEST['Tittel'];
   $beskrivelse = $_REQUEST['Beskrivelse'];
-  $startLeie = $_REQUEST['startLeie'];
-  $sluttLeie = $_REQUEST['sluttLeie'];
-  $kollektiv = $_REQUEST['kollektiv'];
-  $dyrTillatt = $_REQUEST['dyrTillatt'];
-  $roykingTillatt = $_REQUEST['roykingTillatt'];
-  $stromInkl = $_REQUEST['stromInkl'];
-  $internettInkl = $_REQUEST['internettInkl'];
-  $tvInkl = $_REQUEST['tvInkl'];
-  $moblert = $_REQUEST['moblert'];
-  $boligtype = $_REQUEST['boligtype'];
-  $soveromAnt = $_REQUEST['soveromAnt'];
-  $badAnt = $_REQUEST['badAnt'];
-  $kvadrat = $_REQUEST['kvadrat'];
-  $bildelenke = 'bong';
 
+  if($_REQUEST['startLeie'] != ""){
+    $startLeie = $_REQUEST['startLeie'];
+  }
+  else{
+    $startLeie = null;
+  }
+
+  if($_REQUEST['sluttLeie'] != ""){
+    $sluttLeie = $_REQUEST['sluttLeie'];
+  }
+  else{
+    $sluttLeie = null;
+  }
+
+  if(key_exists('kollektiv', $_REQUEST)){
+    $kollektiv = $_REQUEST['kollektiv'];
+  }
+  else{
+    $kollektiv = null;
+  }
+
+  if(key_exists('dyrTillatt', $_REQUEST)){
+    $dyrTillatt = $_REQUEST['dyrTillatt'];
+  }
+
+  else{
+    $dyrTillatt = null;
+  }
+
+  if(key_exists('roykingTillatt', $_REQUEST)){
+    $roykingTillatt = $_REQUEST['roykingTillatt'];
+  }
+  else{
+    $roykingTillatt = null;
+  }
+
+  if(key_exists('stromInkl', $_REQUEST)){
+    $stromInkl = $_REQUEST['stromInkl'];
+  }
+  else{
+    $stromInkl = null;
+  }
+
+  if(key_exists('internettInkl', $_REQUEST)){
+    $internettInkl = $_REQUEST['internettInkl'];
+  }
+  else{
+    $internettInkl = null;
+  }
+
+  if(key_exists('tvInkl', $_REQUEST)){
+    $tvInkl = $_REQUEST['tvInkl'];
+  }
+  else{
+    $tvInkl = null;
+  }
+
+  if(key_exists('moblert', $_REQUEST)){
+    $moblert = $_REQUEST['moblert'];
+  }
+  else{
+    $moblert = null;
+  }
+
+  if(key_exists('boligtype', $_REQUEST)){
+    $boligtype = $_REQUEST['boligtype'];
+  }
+  else{
+    $boligtype = null;
+  }
+
+  if(key_exists('$_REQUEST', $_REQUEST)){
+    $soveromAnt = $_REQUEST['soveromAnt'];
+  }
+  else{
+    $soveromAnt = null;
+  }
+
+  if(key_exists('badAnt', $_REQUEST)){
+    $badAnt = $_REQUEST['badAnt'];
+  }
+  else{
+    $badAnt = null;
+  }
+
+  if(key_exists('kvadrat', $_REQUEST)){
+    $kvadrat = $_REQUEST['kvadrat'];
+  }
+  else{
+    $kvadrat = null;
+  }
+
+  if(key_exists('bildelenke', $_REQUEST)){
+    $bildelenke = 'bong';
+  }
+  else{
+    $bildelenke = null;
+  }
   
   try{
     $sp->execute();
