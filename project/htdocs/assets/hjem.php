@@ -27,8 +27,6 @@ function isChecked($boxName){
   }
   echo $output;
 }
-
-echo isChecked("enebolig");
 ?>
 
 </head>

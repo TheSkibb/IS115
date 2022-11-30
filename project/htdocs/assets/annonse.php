@@ -94,30 +94,25 @@ $favoriteLink =
         </p>
       </div>
       <div id="delContainer" class="containerItem">
-          <div><img id="shareIcon" class="clickable" src="../images/share.png" height="50px"></div>
-          <a href=<?php echo $favoriteLink?> id="favoriteLink">
-            <div id="heartIcon" class="clickable" onclick="clickFavorite()">
+        <div id="actionWrapper">
+          <img id="shareIcon" class="clickable" src="../images/share.png" height="50px">
+          <a href=<?php echo $favoriteLink?> id="favoriteLink" class="clickable" onclick="clickFavorite()">
               <?php echo $favorite == 0 ? '🤍' : '❤️️'?>
-            </div>
           </a>
+        </div>
+        <img id="brukerIcon" class="clickable" src="../images/userIcon.jpg" height="100px">
+        <div id="brukerNavn" class="clickable"><?php getBruker($annonse) ?></div>
+        <div id="sendMeldingKnapp" class="clickable">
+          <a <?php getMeldingLink()?> id="meldingBtn">Send melding</a>
+        </div>
       </div>
+
       <div class="infoContainer containerItem">
         <div>
           <b>info om denne hybelen</b><br />
         <ul id="infoListe">
           <?php getInfoListe()?>
           </ul>
-        </div>
-      </div>
-      <div id="brukerContainer" class="containerItem">
-        <div id="brukerInfo">
-          <img id="brukerIcon" class="clickable" src="../images/userIcon.jpg" height="100px">
-          <div id="brukerNavn" class="clickable"><?php getBruker($annonse) ?></div>
-        </div>
-        <div id="sendMeldingKnappWrapper">
-          <div id="sendMeldingKnapp" class="clickable">
-            <a <?php getMeldingLink()?> id="meldingBtn">Send melding</a>
-          </div>
         </div>
       </div>
       <div id="beskrivelseContainer" class="containerItem">
@@ -133,7 +128,7 @@ $favoriteLink =
     function clickFavorite(){
       const filledHeart = "❤️️"
       const emptyHeart = "🤍"
-      const heartElement = document.getElementById("heartIcon");
+      const heartElement = document.getElementById("favoriteLink");
       if(heartElement.innerHTML == emptyHeart){
         heartElement.innerHTML = filledHeart
       }
