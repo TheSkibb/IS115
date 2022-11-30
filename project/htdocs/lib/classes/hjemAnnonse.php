@@ -37,7 +37,7 @@ class HjemAnnonse{
   
   static function getAnnonse($id, $tittel, $leie, $boligtype, $bilde, $kvadrat=null){
     echo '
-      <a href="http://localhost/project/htdocs/assets/annonse.php?annonse=' . $id .'">
+      <a href="../assets/annonse.php?annonse=' . $id .'">
         <button class="knapp" style="font-size : 15px; width: 100%; height: 40%;">
           <h2> ' . $tittel . '</h2>
           <h5>'. $kvadrat . 'm<sup>2</sup> ' . $leie . 'kr</h5>
