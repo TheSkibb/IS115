@@ -33,7 +33,6 @@ if($userType == 1 || $userType == null){
 */
 if(isset($_REQUEST['redigerAnnonse'])){
   //initialiserer variabel som brukes på tvers av importene
-  echo 'test';
   $bildeNavn = "";
   $annonseId = $_GET['annonse'];
   require_once('../lib/lastOppFil.php');
