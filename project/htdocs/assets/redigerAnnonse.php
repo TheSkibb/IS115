@@ -33,9 +33,16 @@ if($userType == 1 || $userType == null){
 */
 if(isset($_REQUEST['redigerAnnonse'])){
   //initialiserer variabel som brukes på tvers av importene
+  var_dump($_FILES);
   $bildeNavn = "";
   $annonseId = $_GET['annonse'];
-  require_once('../lib/lastOppFil.php');
+  if(is_uploaded_file($_FILES['bilde']['tmp_name'])){
+    require_once('../lib/lastOppFil.php');
+  }
+  else{
+    require_once('./../lib/getAnnonseInfo.php');
+    $bildeNavn = getBildeId($annonseId);
+  }
   require_once('../lib/oppdaterAnnonse.php');
   var_dump($_REQUEST);
 }
@@ -74,7 +81,9 @@ $annonse = new Annonse($_GET['annonse']);
   <p><input type="date" name="startLeie"
   <?php echo "value='"; $annonse->getStartLeie(); echo "'"?>
   > Start leie</p>
-  <p><input type="date" name="sluttLeie"> Slutt leie</p>
+  <p><input type="date" name="sluttLeie"
+  <?php echo "value='"; $annonse->getSluttLeie(); echo "'"?>
+  > Slutt leie</p>
 
   <h4>Preferanser:</h4>
 

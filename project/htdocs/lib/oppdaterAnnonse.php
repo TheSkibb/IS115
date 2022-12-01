@@ -84,6 +84,7 @@ if($_REQUEST['sluttLeie'] != ""){
 }
 else{
   $sluttLeie = null;
+  echo "*********************";
 }
 
 if(key_exists('kollektiv', $_REQUEST)){
@@ -143,7 +144,7 @@ else{
   $boligtype = null;
 }
 
-if(key_exists('$_REQUEST', $_REQUEST)){
+if(key_exists('soveromAnt', $_REQUEST)){
   $soveromAnt = $_REQUEST['soveromAnt'];
 }
 else{
