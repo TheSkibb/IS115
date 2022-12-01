@@ -10,9 +10,11 @@ class Annonse {
     bruker.fornavn,
     bruker.etternavn
     from annonser 
-    inner join boligtype on annonser.boligtype = boligtype.id
-    inner join bruker on annonser.eier = bruker.id
+    left join boligtype on annonser.boligtype = boligtype.id
+    left join bruker on annonser.eier = bruker.id
     where annonser.id=:id";
+
+    var_dump($sql);
 
     $pdo = new PDO($dkn, $DB_BRUKER, $DB_PASS);
     try{
@@ -25,6 +27,8 @@ class Annonse {
     $sp = $pdo->prepare($sql);
     $sp->bindParam(':id', $id, PDO::PARAM_INT);
     $id = $annonseId;
+    var_dump($id);
+    echo '<br>';
 
     try{
       $sp->execute();
@@ -35,7 +39,7 @@ class Annonse {
     exit();
     }
 
-    //var_dump($results);
+    var_dump($results);
 
     //put informasjonen fra sql query i array
     if(sizeof($results) > 0){
