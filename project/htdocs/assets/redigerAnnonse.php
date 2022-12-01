@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Rediger Annonse</title>
+    <title>Ny annonse</title>
     <link rel="stylesheet" href="./../static/stylesNavBar.css">
+    <link rel="stylesheet" href="./../static/stylesNyAnnonse.css">
   </head>
   <body>
 <?php
@@ -12,9 +13,127 @@ error_reporting(E_ALL);
 
 require_once('./../lib/navbar.php');
 
-//TODO: use actual brukerid + check if user = owner
-$bruker = 1;
+//(disabled til loginn funker igjen)
+//sjekk om bruker er logget inn 
+/*session_start();
+if(key_exists('userId', $_SESSION)){
+  $bruker = $_SESSION['userId'];
+}
+else{
+  header('Location: ./logginn.php');
+}
+
+//kun utleiere kan lage nye annonser, sjekk om bruker er utleier
+require_once('../lib/getUserInfo.php');
+$userType = getUserTypeFromId($bruker);
+if($userType == 1 || $userType == null){
+  header('Location: ./hjem.php');
+  exit();
+}
+*/
+if(isset($_REQUEST['registrerAnnonse'])){
+  //initialiserer variabel som brukes på tvers av importene
+  $bildeNavn = "";
+  require_once('../lib/lastOppFil.php');
+  require_once('../lib/nyAnnonse.php');
+}
+
+
+$bruker = 5;
+
+require_once('./../lib/classes/annonse.php');
+
+$annonse = new Annonse($_GET['annonse']);
 
 ?>
+
+<div id="formContainer">
+
+<h1>Registrer Ny annonse!</h1>
+<form method="post" action="./nyAnnonse.php" enctype="multipart/form-data">
+  <h4>Info:</h4>
+  <p><input type="text" name="Gate" required
+    <?php echo "value='"; $annonse->getGate(); echo "'"?>
+  > Gate</p>
+  <p><input type="number" name="Postnummer" required min="1000" max="9999"
+  <?php echo "value='"; $annonse->getPostNummer(); echo "'"?>
+  > Postnummer</p>
+  <p><input type="number" name="Leie" required
+  <?php echo "value='"; $annonse->getLeie(); echo "'"?>
+  > Leie</p>
+  <p><input type="number" name="Depositum" required
+  <?php echo "value='"; $annonse->getDepositum(); echo "'"?>
+  > Depositum</p>
+  <p><input type="text" name="Tittel" required
+  <?php echo "value='"; $annonse->getTittel(); echo "'"?>
+  > Tittel</p>
+  <p><input type="textarea" name="Beskrivelse" required
+  <?php echo "value='"; $annonse->getBeskrivelse(); echo "'"?>
+  > Beskrivelse</p>
+  <p><input type="date" name="startLeie"
+  <?php echo "value='"; $annonse->getStartLeie(); echo "'"?>
+  > Start leie</p>
+  <p><input type="date" name="sluttLeie"> Slutt leie</p>
+
+  <h4>Preferanser:</h4>
+
+  <p>Kollektiv<br>
+    <input type="radio" name="kollektiv" value="1"> Ja
+    <input type="radio" name="kollektiv" value="2"> Nei
+  </p>
+
+  <p> Dyr tillatt<br>
+    <input type="radio" name="dyrTillatt" value="1"> Ja
+    <input type="radio" name="dyrTillatt" value="2"> Nei
+  </p>
+
+  <p> Røyking tillatt<br>
+    <input type="radio" name="roykingTillatt" value="1"> Ja
+    <input type="radio" name="roykingTillatt" value="2"> Nei
+  </p>
+
+  <p> Strøm inkludert<br>
+    <input type="radio" name="stromInkl" value="1"> Ja
+    <input type="radio" name="stromInkl" value="2"> Nei
+  </p>
+
+  <p> Internett inkludert<br>
+    <input type="radio" name="internettInkl" value="1"> Ja
+    <input type="radio" name="internettInkl" value="2"> Nei
+  </p>
+
+  <p> TV inkludert<br>
+    <input type="radio" name="tvInkl" value="1"> Ja
+    <input type="radio" name="tvInkl" value="2"> Nei
+  </p>
+
+  <p> Møblert<br>
+    <input type="radio" name="moblert" value="1"> Ja
+    <input type="radio" name="moblert" value="2"> Nei
+  </p>
+
+  <p><input type="number" name="soveromAnt"> Antall soverom</p>
+  <p><input type="number" name="badAnt"> Antall bad</p>
+  <p><input type="number" name="kvadrat"> Kvadratmeter</p>
+
+  <h4>Boligtype:</h4>
+  <p><input type="radio" name="boligtype" value="1"> Enebolig</p>
+  <p><input type="radio" name="boligtype" value="2"> Garasje/Parkering</p>
+  <p><input type="radio" name="boligtype" value="3"> Hybel</p>
+  <p><input type="radio" name="boligtype" value="4"> Leilighet</p>
+  <p><input type="radio" name="boligtype" value="5"> Rekkehus</p>
+  <p><input type="radio" name="boligtype" value="6"> Bofelleskap</p>
+
+  <p>
+    <b>Bilde:</b><br>
+    <input type="file" name="bilde" size="20" accept="image/x-png,image/jpeg">
+  </p>
+
+  <button type="submit" name="registrerAnnonse" value="registrerAnnonse">last opp bilde</button>
+
+</form>
+
+</div>
+
   </body>
 </html>
