@@ -6,12 +6,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <?php
 include("../static/utforming.php");
-include("../lib/sesjon.php");
+#include("../lib/sesjon.php");
+#include("../lib/sesjon_logginn.php");
+
 ?>
 
 <!--hoved siden -->
 <div class="hoved" >
-
 <h1>Velkommen <?php echo $loggedin_session; ?>,</h1>
 Du er nå logget inn.
 <?php

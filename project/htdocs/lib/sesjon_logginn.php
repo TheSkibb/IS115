@@ -1,12 +1,7 @@
 <?php
 include("database.php");
-if(!isset($_SESSION["brukernavn"])) {
-} else
+#include("godkjenning.php");
 
-// Sjekk tilkoblingen
-#if (mysqli_connect_errno()){
-   # echo "Kunne ikke koble til MySQL: " . mysqli_connect_error();
-#}
 session_start();
 $user_check=$_SESSION['login_user'];
 $ses_sql=mysqli_query($con,"select brukernavn, id from bruker where brukernavn='$user_check'");
@@ -18,6 +13,4 @@ echo "Go back";
 header("Location: ../assets/logginn.php"); #logginn.php
 } else
 
-
 ?>
-

@@ -1,4 +1,4 @@
-use project
+-- use project
 
 create or replace table kjonn(
   id int not null primary key auto_increment,

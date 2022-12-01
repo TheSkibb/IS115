@@ -5,10 +5,10 @@ error_reporting(E_ALL);
 ?>
 
 <?php
-$DB_VERT = "172.17.0.2";
-$DB_BRUKER = "php";
-$DB_PASS = "123";
-$DB_NAVN = "project";
+$DB_VERT = "localhost";
+$DB_BRUKER = "root";
+$DB_PASS = "";
+$DB_NAVN = "prosjekt";
 
 $dkn = "mysql:host=" . $DB_VERT . "; dbname=" . $DB_NAVN;
 
