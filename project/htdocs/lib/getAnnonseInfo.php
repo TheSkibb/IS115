@@ -22,8 +22,8 @@ function getUnusedId(){
   }
 
   if(sizeof($results) > 0){
-    var_dump($results[0]);
-    echo '<br><br>';
+    //var_dump($results[0]);
+    //echo '<br><br>';
     return get_object_vars($results[0])["max(id)"]+ 1;
   }
   else{
