@@ -34,6 +34,9 @@ if($userType == 1 || $userType == null){
 if(isset($_REQUEST['registrerAnnonse'])){
   //initialiserer variabel som brukes på tvers av importene
   $bildeNavn = "";
+  //hent id-en som vil høre til annonsen
+  require_once('./../lib/getAnnonseInfo.php');
+  $annonseId = getUnusedId();
   require_once('../lib/lastOppFil.php');
   require_once('../lib/nyAnnonse.php');
 }
