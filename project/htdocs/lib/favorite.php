@@ -15,6 +15,14 @@ else{
   $sql = "delete from favoritter where brukerId = :bruker and annonseId = :annonse";
 }
 
+$pdo = new PDO($dkn, $DB_BRUKER, $DB_PASS);
+try{
+  $sp = $pdo->prepare($sql);
+}
+catch(PDOException $e){
+  echo 'noe feil skjedde';
+}
+
 $sp = $pdo->prepare($sql);
 $sp->bindParam(':bruker', $bruker, PDO::PARAM_INT);
 $sp->bindParam(':annonse', $annonse, PDO::PARAM_INT);

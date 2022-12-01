@@ -10,10 +10,18 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+
 require_once("./../lib/navbar.php");
 require_once('./../lib/meldinger.php');
 
-$user = 1;
+session_start();
+if(key_exists('userId', $_SESSION)){
+  $user = $_SESSION['userId'];
+}
+else{
+  header('Location: ../assets/logginn.php');
+}
+
 if(!key_exists('bruker', $_GET)){
   header('Location: hjem.php');
   exit();
@@ -26,7 +34,7 @@ else if($_GET['bruker'] == $user){
 ?>
 
 <div id="meldingContainer">
-  <h1>Meldinger med Bruker</h1>
+  <h1>Meldinger med <?php require_once('./../lib/getUserInfo.php'); getUserNameFromId($_GET['bruker']); ?></h1>
 <div id="chatDiv">
 <?php
   getMeldinger($user, $_GET['bruker']);

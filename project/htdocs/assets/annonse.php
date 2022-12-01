@@ -14,6 +14,16 @@ error_reporting(E_ALL);
 require_once("../lib/classes/annonse.php");
 require_once("./../lib/navbar.php");
 
+session_start();
+
+if(key_exists('userId', $_SESSION)){
+  $bruker = $_SESSION['userId'];
+}
+else{
+  header('Location: ./logginn.php');
+  exit();
+}
+
 if(!key_exists( 'annonse', $_GET)){
   header("Location: 404.php");
 }
@@ -58,16 +68,16 @@ function getAddresse(){
 function getMeldingLink(){
   global $annonse;
   $id = $annonse->getBrukerId();
-  echo 'href="./melding.php?bruker=' . '2"';
+  echo 'href="./melding.php?bruker=' . $id . '"';
 }
 
 //check if the annonse is a favorite or not
-$favorite = $annonse->isFavorite(1, $_GET['annonse']);
+$favorite = $annonse->isFavorite($bruker, $_GET['annonse']);
 
 $favoriteLink = 
   '../lib/favorite.php' .
   '?annonse=' . $_GET['annonse'] .
-  '&bruker=' . 1 .
+  '&bruker=' . $bruker .
   '&favorite=' . $favorite
 ;
 ?>

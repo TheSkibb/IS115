@@ -5,9 +5,17 @@ class HjemAnnonse{
     $sql = "
     select annonser.id, tittel, kvadrat, leie, bildelenke, boligtype.boligtype
     from annonser
-    inner join boligtype on annonser.boligtype = boligtype.id " . 
+    left join boligtype on annonser.boligtype = boligtype.id " . 
     $filter;
     //var_dump($sql);
+
+    $pdo = new PDO($dkn, $DB_BRUKER, $DB_PASS);
+    try{
+      $sp = $pdo->prepare($sql);
+    }
+    catch(PDOException $e){
+      echo 'noe feil skjedde';
+    }
     $sp = $pdo->prepare($sql);
     try{
       $sp->execute();
