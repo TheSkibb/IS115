@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Ny annonse</title>
+    <title>Rediger annonse</title>
     <link rel="stylesheet" href="./../static/stylesNavBar.css">
     <link rel="stylesheet" href="./../static/stylesNyAnnonse.css">
   </head>
@@ -31,13 +31,15 @@ if($userType == 1 || $userType == null){
   exit();
 }
 */
-if(isset($_REQUEST['registrerAnnonse'])){
+if(isset($_REQUEST['redigerAnnonse'])){
   //initialiserer variabel som brukes på tvers av importene
+  echo 'test';
   $bildeNavn = "";
+  $annonseId = $_GET['annonse'];
   require_once('../lib/lastOppFil.php');
-  require_once('../lib/nyAnnonse.php');
+  require_once('../lib/oppdaterAnnonse.php');
+  var_dump($_REQUEST);
 }
-
 
 $bruker = 5;
 
@@ -49,8 +51,8 @@ $annonse = new Annonse($_GET['annonse']);
 
 <div id="formContainer">
 
-<h1>Registrer Ny annonse!</h1>
-<form method="post" action="./nyAnnonse.php" enctype="multipart/form-data">
+<h1>Rediger din annonse!</h1>
+<form method="post" action="./redigerAnnonse.php?annonse=1" enctype="multipart/form-data">
   <h4>Info:</h4>
   <p><input type="text" name="Gate" required
     <?php echo "value='"; $annonse->getGate(); echo "'"?>
@@ -77,59 +79,64 @@ $annonse = new Annonse($_GET['annonse']);
 
   <h4>Preferanser:</h4>
 
+  <?php 
+
+    function getPreferanser($preferanse){
+    global $annonse;
+    echo '<input type="radio" name="' . $preferanse . '"' .
+    ($annonse->getInfo($preferanse) == 1 ? 'checked="true"' : '' ).' value="1"> Ja
+    <input type="radio" name="' . $preferanse . '"' .'" value="0" '.
+    ($annonse->getInfo($preferanse) == 0 ? 'checked="true"' : '' ) . '> Nei';
+  echo $annonse->getInfo($preferanse);
+    }
+  ?>
   <p>Kollektiv<br>
-    <input type="radio" name="kollektiv" value="1"> Ja
-    <input type="radio" name="kollektiv" value="2"> Nei
+  <?php getPreferanser('kollektiv');?>
   </p>
 
   <p> Dyr tillatt<br>
-    <input type="radio" name="dyrTillatt" value="1"> Ja
-    <input type="radio" name="dyrTillatt" value="2"> Nei
+  <?php getPreferanser('dyrTillatt');?>
   </p>
 
   <p> Røyking tillatt<br>
-    <input type="radio" name="roykingTillatt" value="1"> Ja
-    <input type="radio" name="roykingTillatt" value="2"> Nei
+  <?php getPreferanser('roykingTillatt');?>
   </p>
 
   <p> Strøm inkludert<br>
-    <input type="radio" name="stromInkl" value="1"> Ja
-    <input type="radio" name="stromInkl" value="2"> Nei
+  <?php getPreferanser('stromInkl');?>
   </p>
 
   <p> Internett inkludert<br>
-    <input type="radio" name="internettInkl" value="1"> Ja
-    <input type="radio" name="internettInkl" value="2"> Nei
+  <?php getPreferanser('internettInkl');?>
   </p>
 
   <p> TV inkludert<br>
-    <input type="radio" name="tvInkl" value="1"> Ja
-    <input type="radio" name="tvInkl" value="2"> Nei
+  <?php getPreferanser('tvInkl');?>
   </p>
 
   <p> Møblert<br>
-    <input type="radio" name="moblert" value="1"> Ja
-    <input type="radio" name="moblert" value="2"> Nei
+  <?php getPreferanser('moblert');?>
   </p>
 
-  <p><input type="number" name="soveromAnt"> Antall soverom</p>
-  <p><input type="number" name="badAnt"> Antall bad</p>
-  <p><input type="number" name="kvadrat"> Kvadratmeter</p>
+  <p><input type="number" name="soveromAnt" <?php echo 'value="'; echo $annonse->getSoveromAnt() . '"'?>> Antall soverom</p>
+  <p><input type="number" name="badAnt" <?php echo 'value="'; echo $annonse->getBadAnt() . '"'?>> Antall bad</p>
+  <p><input type="number" name="kvadrat" <?php echo 'value="'; echo $annonse->getKvadrat() . '"'?>> Kvadratmeter</p>
 
   <h4>Boligtype:</h4>
-  <p><input type="radio" name="boligtype" value="1"> Enebolig</p>
-  <p><input type="radio" name="boligtype" value="2"> Garasje/Parkering</p>
-  <p><input type="radio" name="boligtype" value="3"> Hybel</p>
-  <p><input type="radio" name="boligtype" value="4"> Leilighet</p>
-  <p><input type="radio" name="boligtype" value="5"> Rekkehus</p>
-  <p><input type="radio" name="boligtype" value="6"> Bofelleskap</p>
+  <?php $boligtype = $annonse->getBoligtype(); echo $boligtype?>
+  <p><input type="radio" name="boligtype" value="1" <?php echo $boligtype == 'Enebolig' ? 'checked="true"' : '' ?>> Enebolig</p>
+  <p><input type="radio" name="boligtype" value="2" <?php echo $boligtype == "Garasje/Parkering" ? 'checked="true"' : '' ?>> Garasje/Parkering</p>
+  <p><input type="radio" name="boligtype" value="3" <?php echo $boligtype == 'Hybel' ? 'checked="true"' : '' ?>> Hybel</p>
+  <p><input type="radio" name="boligtype" value="4" <?php echo $boligtype == 'Leilighet' ? 'checked="true"' : '' ?>> Leilighet</p>
+  <p><input type="radio" name="boligtype" value="5" <?php echo $boligtype == 'Rekkehus' ? 'checked="true"' : '' ?>> Rekkehus</p>
+  <p><input type="radio" name="boligtype" value="6" <?php echo $boligtype == 'Bofelleskap' ? 'checked="true"' : '' ?>> Bofelleskap</p>
 
   <p>
     <b>Bilde:</b><br>
     <input type="file" name="bilde" size="20" accept="image/x-png,image/jpeg">
   </p>
 
-  <button type="submit" name="registrerAnnonse" value="registrerAnnonse">last opp bilde</button>
+  <button type="submit" name="redigerAnnonse" value="redigerAnnonse">redigerAnnonse</button>
 
 </form>
 

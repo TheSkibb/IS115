@@ -25,6 +25,8 @@ else{
   exit();
 }*/
 
+$bruker = 5;
+
 if(!key_exists( 'annonse', $_GET)){
   header("Location: 404.php");
 }
@@ -33,7 +35,7 @@ $annonse = new Annonse($_GET['annonse']);
 
 function getImage(){
   global $annonse;
-  $annonse->getImage();
+  echo $annonse->getImage();
 }
 
 function getTittel(){

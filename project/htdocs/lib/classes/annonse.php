@@ -107,7 +107,7 @@ class Annonse {
   }
 
   function getImage(){
-    echo $this->information['bilde'];
+    return $this->information['bilde'];
   }
 
   function getTittel(){
@@ -139,35 +139,39 @@ class Annonse {
   }
 
   function getKollektiv(){
-    echo $this->information['kollektiv'];
+    return $this->information['kollektiv'];
   }
 
   function getDyrTillatt(){
-    echo $this->information['dyrTillatt'];
+    return $this->information['dyrTillatt'];
   }
 
   function getRoykingTillatt(){
-    echo $this->information['roykingTillatt'];
+    return $this->information['roykingTillatt'];
   }
 
   function getStromInkl(){
-    echo $this->information['stromInkl'];
+    return $this->information['stromInkl'];
   }
 
   function getInternettInkl(){
-    echo $this->information['internettInkl'];
+    return $this->information['internettInkl'];
   }
 
   function getTvInkl(){
-    echo $this->information['tvInkl'];
+    return $this->information['tvInkl'];
   }
 
   function getMoblert(){
-    echo $this->information['moblert'];
+    return $this->information['moblert'];
+  }
+
+  function getInfo($info){
+    return $this->information[$info];
   }
 
   function getBoligtype(){
-    echo $this->information['boligtype'];
+    return $this->information['boligtype'];
   }
 
   function getSoveromAnt(){
