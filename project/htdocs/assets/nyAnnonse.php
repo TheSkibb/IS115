@@ -110,7 +110,7 @@ $bruker = 5;
     <input type="file" name="bilde" size="20" accept="image/x-png,image/jpeg">
   </p>
 
-  <button type="submit" name="registrerAnnonse" value="registrerAnnonse">last opp bilde</button>
+  <button type="submit" name="registrerAnnonse" value="registrerAnnonse">Last opp annonse</button>
 
 </form>
 
