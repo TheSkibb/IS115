@@ -1,7 +1,7 @@
 <?php
 //if post request is sent
 
-require_once("./../lib/database.inc.php");
+require("./../lib/database.inc.php");
 
 $sql = "
 insert into annonser (

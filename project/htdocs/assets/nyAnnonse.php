@@ -30,7 +30,8 @@ if($userType == 1 || $userType == null){
   exit();
 }
 
-if(isset($_REQUEST['registrerHybel'])){
+if(isset($_REQUEST['registrerAnnonse'])){
+  require_once('../lib/lastOppFil.php');
   require_once('../lib/nyAnnonse.php');
 }
 ?>
@@ -38,8 +39,7 @@ if(isset($_REQUEST['registrerHybel'])){
 <div id="formContainer">
 
 <h1>Registrer Ny annonse!</h1>
-<form method="post" action="./nyAnnonse.php">
-
+<form method="post" action="./nyAnnonse.php" enctype="multipart/form-data">
   <h4>Info:</h4>
   <p><input type="text" name="Gate" required> Gate</p>
   <p><input type="number" name="Postnummer" required min="1000" max="9999"> Postnummer</p>
@@ -90,7 +90,6 @@ if(isset($_REQUEST['registrerHybel'])){
   <p><input type="number" name="soveromAnt"> Antall soverom</p>
   <p><input type="number" name="badAnt"> Antall bad</p>
   <p><input type="number" name="kvadrat"> Kvadratmeter</p>
-  <p><input type="file" name="bilde"> Bilde</p>
 
   <h4>Boligtype:</h4>
   <p><input type="radio" name="boligtype" value="1"> Enebolig</p>
@@ -100,7 +99,12 @@ if(isset($_REQUEST['registrerHybel'])){
   <p><input type="radio" name="boligtype" value="5"> Rekkehus</p>
   <p><input type="radio" name="boligtype" value="6"> Bofelleskap</p>
 
-  <button name="registrerHybel">Registrer</button>
+  <p>
+    <b>Bilde:</b><br>
+    <input type="file" name="bilde" size="20" accept="image/x-png,image/jpeg">
+  </p>
+
+  <button type="submit" name="registrerAnnonse" value="registrerAnnonse">last opp bilde</button>
 
 </form>
 
