@@ -1,16 +1,4 @@
 <?php
-var_dump($_REQUEST);
-echo "<br>";
-echo "<br>";
-var_dump($_FILES);
-echo "<br>";
-echo "<br>";
-if($_FILES["bilde"]["name"] != ""){
-  echo "bilde is null";
-}
-else{
-  echo "bilde is not null";
-}
   if(is_uploaded_file($_FILES['bilde']['tmp_name'])){
     $suksess = true;
 
@@ -45,10 +33,10 @@ else{
       $opplastetFil = move_uploaded_file($_FILES['bilde']['tmp_name'], "./../images/" . $bildeNavn);
 
       if($opplastetFil){
-        echo 'filen din har blitt lastet opp';
+        //echo 'filen din har blitt lastet opp';
       }
       else{
-        echo 'noe feil sjedde, vennligst prøv på nytt';
+        echo 'noe feil sjedde, bilde har ikke blitt lastet opp';
         exit();
       }
     }

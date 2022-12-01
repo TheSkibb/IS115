@@ -60,7 +60,9 @@ catch(PDOException $e){
 
 $sp = $pdo->prepare($sql);
 
-$sp->bindParam(':bruker',   $bruker, PDO::PARAM_STR);
+//TODO: put back actual eier
+$brukerTemp = 5;
+$sp->bindParam(':bruker',   $brukerTemp, PDO::PARAM_STR);
 $sp->bindParam(':addresse', $addresse, PDO::PARAM_STR);
 $sp->bindParam(':postnummer', $postnummer, PDO::PARAM_STR);
 $sp->bindParam(':leie', $leie, PDO::PARAM_INT);
@@ -181,8 +183,8 @@ else{
   $kvadrat = null;
 }
 
-if(key_exists('bildelenke', $_REQUEST)){
-  $bildelenke = 'bong';
+if($bildeNavn != ""){
+  $bildelenke = $bildeNavn;
 }
 else{
   $bildelenke = null;
