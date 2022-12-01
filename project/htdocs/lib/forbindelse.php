@@ -76,5 +76,6 @@ if ($num_rows) {
 	header("location: ../assets/logginn.php?remarks=error&value=$e");	 
  }
 }
+
 ?>  
 

@@ -6,7 +6,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <?php
 include("../static/utforming.php");
-include("../lib/sesjon.php");
+include("../lib/sesjon_logginn.php");
+#include("../lib/sesjon.php");
+
 ?>
 
 <!--hoved siden -->

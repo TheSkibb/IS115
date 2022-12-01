@@ -6,9 +6,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 #include("../static/utforming.php");
 include("../lib/database.php");
 #require('../lib/sesjon.php');
@@ -18,14 +15,14 @@ include("../lib/database.php");
 <div class="hoved" >
   
 <?php 
-session_start();
+#session_start();
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 	$brukernavn=mysqli_real_escape_string($con,$_POST['brukernavn']);
 	$passord=mysqli_real_escape_string($con,$_POST['passord']);
 	$result = mysqli_query($con,"SELECT * FROM bruker");
 	$c_rows = mysqli_num_rows($result);
 	if ($c_rows!=$brukernavn) {
-		header("location: logginn.php?remark_login=failed");
+		header("location: registrer.php?remark_login=failed");
 	}
 	$sql="SELECT id FROM bruker WHERE brukernavn='$brukernavn' and passord='$passord'";
 	$result=mysqli_query($con,$sql);
@@ -34,11 +31,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 	$count=mysqli_num_rows($result);
 	if($count==1) {
 		$_SESSION['login_user']=$brukernavn;
-    $_SESSION['userId']=$row["id"];
 		header("location: profil.php");
 	}
 }
-
 ?>
 <!--<p><a href="loggut.php">Logout</a></p>-->
     

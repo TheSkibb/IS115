@@ -24,17 +24,18 @@ echo " <p> Innlogging feilet!, feil brukernavn eller passord</p> ";
 
 ?>
 
-<form class="form" method="post" name="login">
+<!--<form class="form" method="post" name="login">-->
     <input type="text" class="login-input" name="brukernavn" placeholder="Brukernavn" autofocus="true"/><p>
     <input type="password" class="login-input" name="passord" placeholder="Passord"/><p>
     <input type="submit" value="Logg inn" name="submit" class="login-button" />
-    <p class="link"><a href="registrer.php"><br>Register deg</a></p>
+ <p class="link"><a href="registrer.php"><br>Register deg</a></p>
 </form>
-</form>
+
 </div>
 
 
-</form>
+
+
 
 
 </body>
