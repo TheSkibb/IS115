@@ -70,10 +70,10 @@ if ($num_rows) {
  $etternavn=$_POST['etternavn'];
  $epost=$_POST['epost'];
  $brukernavn=$_POST['brukernavn'];
- $passord=$_POST['passord'];
+ $passord=password_hash($_POST['passord'], PASSWORD_DEFAULT);
 
- $hash_passord = password_hash($passord, PASSWORD_DEFAULT);
- $passord = password_verify($passord, $hash_passord);
+ #$hash_passord = password_hash($passord, PASSWORD_DEFAULT);
+ #$passord = password_verify($passord, $hash_passord);
 
  $kjonnId=$_POST['kjonnId'];
  $beskrivelse=$_POST['beskrivelse'];

@@ -7,12 +7,12 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
 <?php
 include("../static/utforming.php");
-include("../lib/godkjenning.php");
+#include("../lib/godkjenning.php");
 
 #require('../lib/sesjon.php');
 ?>
 <div class="hoved">
-<form action="" method="POST">
+<form action="../lib/godkjenning.php" method="POST">
 <?php
 $remarks = isset($_GET["remark_login"]) ? $_GET["remark_login"] : '';
 if ($remarks==null and $remarks=="") {
