@@ -2,17 +2,18 @@
 <html lang="en">
 <head>
 <title>Profil</title>
-<meta charset="UTF-8">
+<meta charset="utf8mb4">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <?php
 include("../static/utforming.php");
-#include("../lib/sesjon.php");
-#include("../lib/sesjon_logginn.php");
+include("../lib/sesjon.php");
 
 ?>
 
 <!--hoved siden -->
 <div class="hoved" >
+<form action="../lib/sesjon.php" method="POST">
+
 <h1>Velkommen <?php echo $loggedin_session; ?>,</h1>
 Du er nå logget inn.
 <?php
@@ -22,8 +23,8 @@ $result=mysqli_query($con,$sql);
 <?php
 while($rows=mysqli_fetch_array($result)){
 ?>
-
-<form action="" method="POST"><br>
+</form>
+<form action="../lib/sesjon.php" method="POST"><br>
 <table border="0" align="center" cellpadding="2" cellspacing="0">
 
 <tr id="lg-1">

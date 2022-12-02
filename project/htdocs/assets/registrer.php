@@ -8,11 +8,13 @@
 include("../static/utforming.php");
 include("../lib/database.php");
 include("../lib/godkjenning.php");
+#include("../lib/forbindelse.php");
 
 ?>
 <div class="hoved">
 <h2> Registrer deg her </h2>
 <?php
+$remarks = isset($_GET["remarks"]) ? $_GET["remarks"] : '';
 
 if (isset($_REQUEST["brukernavn"])) {
   $fornavn    = stripslashes($_REQUEST["fornavn"]);
@@ -30,7 +32,7 @@ if (isset($_REQUEST["brukernavn"])) {
   $kjonnId    = stripslashes($_REQUEST["kjonnId"]);
   $kjonnId    = mysqli_real_escape_string($con, $kjonnId);
 
-  $passord = stripslashes($_REQUEST["passord"]);
+  $passord = hash($_REQUEST["passord"], PASSWORD_DEFAULT);
   $passord = mysqli_real_escape_string($con, $passord);
 
   $beskrivelse = stripslashes($_REQUEST["beskrivelse"]);
@@ -40,9 +42,21 @@ if (isset($_REQUEST["brukernavn"])) {
   $brukerTypeId = mysqli_real_escape_string($con, $brukerTypeId);
 
   $query    = "INSERT into `bruker` (fornavn, etternavn, brukernavn, passord, epost, kjonnId, beskrivelse, brukerTypeId)
-               VALUES ('$fornavn', '$etternavn', '$brukernavn', '$passord, '$epost', '$kjonnId', '$beskrivelse', '$brukerTypeId')";
+               VALUES ('$fornavn', '$etternavn', '$brukernavn', '$passord', '$epost', '$kjonnId', '$beskrivelse', '$brukerTypeId')";
   $result   = mysqli_query($con, $query);
-} else 
+} if ($remarks==null and $remarks=="") {
+if ($remarks=='success') {
+echo " <p> Du er registrert. </p>";
+}
+if ($remarks=='failed') {
+echo " <p> Registrering mislyktes, brukernavnet finnes </p>";
+}
+if ($remarks=='error') {
+echo " <p> Registrering feilet! <br> Feil: ".$_GET["value"]." </p> ";
+}
+}
+
+#if (isset($_REQUEST["brukernavn"])) { 
 
 ?>
 
@@ -78,24 +92,19 @@ if (isset($_REQUEST["brukernavn"])) {
 
 <!--<label for="Gender">Kjønn</label>-->
 <label class="radio-inline">
-      <input type="radio" class="login-input" name="kjonnId"  value="1" checked>
-      Mann </label>
+      <input type="radio" class="login-input" name="kjonnId"  value="1" checked>Mann </label>
       
     <label class="radio-inline">
-      <input type="radio" class="login-input" name="kjonnId"  value="2">
-      Kvinne </label>
+      <input type="radio" class="login-input" name="kjonnId"  value="2">Kvinne </label>
     
     <label class="radio-inline">
-      <input type="radio" class="login-input" name="kjonnId"  value="3">
-      Ønsker ikke å oppgi </label> <p>
+      <input type="radio" class="login-input" name="kjonnId"  value="3">Ønsker ikke å oppgi </label> <p>
     
     <label class="radio-inline">
-      <input type="radio" class="login-input" name="brukerTypeId"  value="1" checked>
-      Utleier </label>
+      <input type="radio" class="login-input" name="brukerTypeId"  value="1" checked>Leietaker</label>
     
     <label class="radio-inline">
-      <input type="radio" class="login-input" name="brukerTypeId"  value="2">
-      Leietaker </label> <p>
+      <input type="radio" class="login-input" name="brukerTypeId"  value="2"> </label>Utleier <p>
      
     <label for="beskrivelse">Beskrivelse om deg selv:</label></p>
     <textarea id="beskrivelse" class="login-input" name="beskrivelse" rows="4" cols="50">Er du en utleier/leietaker, hva er du på utkikk etter etc...</textarea><br><br>
