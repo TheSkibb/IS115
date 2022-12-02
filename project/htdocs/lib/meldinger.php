@@ -94,10 +94,12 @@ function sendMelding($tilbruker, $frabruker, $innhold){
 function getUserMeldinger($userId){
   require('./../lib/database.inc.php');
   $sql = '
-    select min(dato), bruker.fornavn, tilbruker, frabruker
+    select max(dato), tilbruker, frabruker, b1.fornavn as fra, b2.fornavn as til, innhold
     from meldinger
-    inner join bruker on tilbruker = bruker.id
-    inner join bruker on frabruker = bruker.id
+    INNER JOIN bruker as b1
+    ON meldinger.frabruker = b1.id
+    INNER JOIN bruker as b2
+    ON meldinger.tilbruker = b2.id
     where tilbruker = :userId or frabruker = :userId
     group by frabruker, tilbruker
     order by dato asc
@@ -111,13 +113,10 @@ function getUserMeldinger($userId){
   catch(PDOException $e){
     echo 'noe feil skjedde';
   }
-  echo 1;
 
   $sp = $pdo->prepare($sql);
-  echo 2;
 
   $sp->bindParam(':userId', $userId, PDO::PARAM_INT);
-  echo 3;
 
   try{
     $sp->execute();
@@ -127,7 +126,6 @@ function getUserMeldinger($userId){
     echo 'error' . $e;
     exit();
   }
-  echo 4;
 
   if(sizeof($results) > 0){
     $outputStr = "";
@@ -138,9 +136,14 @@ function getUserMeldinger($userId){
     foreach($results as $result){
       $andreBruker = $result->frabruker == $userId ? $result->tilbruker : $result->frabruker;
       if(!key_exists($andreBruker, $brukere)){
-        $outputStr .= '<div class="melding">';
-        $outputStr .= $andreBruker;
-        $outputStr .= "</div>";
+        $resultArray = get_object_vars($result);
+        $outputStr .= '<a href="./melding.php?bruker=' . $andreBruker . '">';
+        $outputStr .= '<div class="melding"><div class="meldingBruker">';
+        $outputStr .= $resultArray['frabruker'] == $userId ? $resultArray['til'] : $resultArray['fra'];
+        $outputStr .= '</div><div class="meldingInnhold">';
+        $outputStr .= $resultArray['innhold'];
+        $outputStr .= "</div></div>";
+        $outputStr .= '</a>';
         $brukere[$andreBruker] = "";
       }
     }
