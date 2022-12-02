@@ -12,7 +12,6 @@ error_reporting(E_ALL);
 
 require_once("./../lib/navbar.php");
 
-//TODO: use actual user id
 //sjekk om bruker er logget inn 
 session_start();
 if(key_exists('userId', $_SESSION)){
