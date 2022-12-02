@@ -3,6 +3,7 @@
   <head>
     <title>Dine Meldinger</title>
     <link rel="stylesheet" href="./../static/stylesNavBar.css">
+    <link rel="stylesheet" href="./../static/stylesDineMeldinger.css">
   </head>
   <body>
 <?php
@@ -11,11 +12,17 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 require_once('./../lib/navbar.php');
 //TODO: add actual user
-$bruker = 1;
+session_start();
+if(key_exists('userId', $_SESSION)){
+  $bruker= $_SESSION['userId'];
+}
+else{
+  header('Location: ../assets/logginn.php');
+}
 require_once('./../lib/meldinger.php');
 
 
-echo getUserMeldinger(1);
+echo getUserMeldinger($bruker);
 ?>
   </body>
 </html>
