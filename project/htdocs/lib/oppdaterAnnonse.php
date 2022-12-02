@@ -84,7 +84,6 @@ if($_REQUEST['sluttLeie'] != ""){
 }
 else{
   $sluttLeie = null;
-  echo "*********************";
 }
 
 if(key_exists('kollektiv', $_REQUEST)){
@@ -183,7 +182,7 @@ exit();
 
 echo '
 <script>
-alert("Din annonse er blitt lastet opp")
+alert("Din annonse er blitt oppdatert")
 </script>
 ';
 ?>
