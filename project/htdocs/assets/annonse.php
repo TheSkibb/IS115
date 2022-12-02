@@ -16,16 +16,13 @@ require_once("./../lib/navbar.php");
 
 session_start();
 
-//TODO: re-enable when logginn works
-/*if(key_exists('userId', $_SESSION)){
+if(key_exists('userId', $_SESSION)){
   $bruker = $_SESSION['userId'];
 }
 else{
   header('Location: ./logginn.php');
   exit();
-}*/
-
-$bruker = 5;
+}
 
 if(!key_exists( 'annonse', $_GET)){
   header("Location: 404.php");
