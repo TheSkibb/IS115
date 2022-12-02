@@ -8,6 +8,7 @@
 include("../static/utforming.php");
 include("../lib/sesjon.php");
 
+
 ?>
 
 <!--hoved siden -->
@@ -44,6 +45,23 @@ while($rows=mysqli_fetch_array($result)){
 <br>
 <div id="st"><a href="loggut.php" id="st-btn">Logg ut</a></div><br>
 <div id="st"><a href="slett_konto.php" id="st-btn">Slett konto</a></div>
+
+<p>Info: </p>
+
+<div id="st"><a href="dineMeldinger.php" id="st-btn">Dine meldinger</a></div><br>
+<?php
+
+require_once('../lib/getUserInfo.php');
+$bruker = $_SESSION['userId'];
+$userType = getUserTypeFromId($bruker);
+
+if ($userType == 2) {
+
+    echo "<div id='st'><a href='dineAnnonser.php' id='st-btn'>Dine annonser</a></div>" ;
+
+}
+?>
+
 </div>
 </div>
 <?php 
