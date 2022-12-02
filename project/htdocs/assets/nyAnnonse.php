@@ -13,9 +13,8 @@ error_reporting(E_ALL);
 
 require_once('./../lib/navbar.php');
 
-//(disabled til loginn funker igjen)
 //sjekk om bruker er logget inn 
-/*session_start();
+session_start();
 if(key_exists('userId', $_SESSION)){
   $bruker = $_SESSION['userId'];
 }
@@ -30,7 +29,7 @@ if($userType == 1 || $userType == null){
   header('Location: ./hjem.php');
   exit();
 }
-*/
+
 if(isset($_REQUEST['registrerAnnonse'])){
   //initialiserer variabel som brukes på tvers av importene
   $bildeNavn = "";

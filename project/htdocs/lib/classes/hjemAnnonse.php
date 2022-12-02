@@ -1,7 +1,7 @@
 <?php
 class HjemAnnonse{
   static function getAllAnnonser($filter = null, $eier=false){
-    require_once('./../lib/database.inc.php');
+    require('./../lib/database.inc.php');
     $sql = "
     select annonser.id, tittel, kvadrat, leie, bildelenke, boligtype.boligtype, eier
     from annonser
