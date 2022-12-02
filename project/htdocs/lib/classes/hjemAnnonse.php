@@ -1,9 +1,9 @@
 <?php
 class HjemAnnonse{
-  static function getAllAnnonser($filter = null){
+  static function getAllAnnonser($filter = null, $eier=false){
     require_once('./../lib/database.inc.php');
     $sql = "
-    select annonser.id, tittel, kvadrat, leie, bildelenke, boligtype.boligtype
+    select annonser.id, tittel, kvadrat, leie, bildelenke, boligtype.boligtype, eier
     from annonser
     left join boligtype on annonser.boligtype = boligtype.id " . 
     $filter;
@@ -36,6 +36,22 @@ class HjemAnnonse{
           $result->bildelenke,
           $result->kvadrat
         );
+        if($eier==true){
+          echo '<a href="./redigerAnnonse.php';
+          echo '?annonse=' . $result->id;
+          echo '">Rediger Annonse</a><br>';
+          echo '<a href="./../lib/slettAnnonse.php';
+          echo '?annonse=' . $result->id;
+          echo '" class="confirm">Slett annonse</button>';
+          echo "<script>
+            var links = document.getElementsByClassName('confirm');
+            for (var i = 0; i < links.length; i++) {
+                links[i].onclick = function() {
+                    return confirm('Er du sikker på at du vil slette denne annonsen? Denne handlingen kan ikke angres.');
+                };
+            }
+          </script>";
+        }
       }
     }
     else{

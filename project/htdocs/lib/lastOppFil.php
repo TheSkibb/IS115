@@ -1,16 +1,4 @@
 <?php
-var_dump($_REQUEST);
-echo "<br>";
-echo "<br>";
-var_dump($_FILES);
-echo "<br>";
-echo "<br>";
-if($_FILES["bilde"]["name"] != ""){
-  echo "bilde is null";
-}
-else{
-  echo "bilde is not null";
-}
   if(is_uploaded_file($_FILES['bilde']['tmp_name'])){
     $suksess = true;
 
@@ -29,26 +17,23 @@ else{
       $suksess = false;
     }
 
-    //hent id-en som vil høre til annonsen
-    require_once('./../lib/getAnnonseInfo.php');
-    $unusedId = getUnusedId();
     
     //om ikke noe feil har skjedd så prøv å laste opp filen
     if($suksess){
       if($_FILES['bilde']['type'] == 'image/jpeg'){
-        $bildeNavn = 'annonse' . $unusedId . '.jpg';
+        $bildeNavn = 'annonse' . $annonseId . '.jpg';
       }
       else{
-        $bildeNavn = 'annonse' . $unusedId . '.png';
+        $bildeNavn = 'annonse' . $annonseId . '.png';
       }
       //move_uploaded_file returnerer en boolean som viser om flyttingen av filen var en suksess
       $opplastetFil = move_uploaded_file($_FILES['bilde']['tmp_name'], "./../images/" . $bildeNavn);
 
       if($opplastetFil){
-        echo 'filen din har blitt lastet opp';
+        //echo 'filen din har blitt lastet opp';
       }
       else{
-        echo 'noe feil sjedde, vennligst prøv på nytt';
+        echo 'noe feil sjedde, bilde har ikke blitt lastet opp';
         exit();
       }
     }

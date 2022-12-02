@@ -16,13 +16,16 @@ require_once("./../lib/navbar.php");
 
 session_start();
 
-if(key_exists('userId', $_SESSION)){
+//TODO: re-enable when logginn works
+/*if(key_exists('userId', $_SESSION)){
   $bruker = $_SESSION['userId'];
 }
 else{
   header('Location: ./logginn.php');
   exit();
-}
+}*/
+
+$bruker = 5;
 
 if(!key_exists( 'annonse', $_GET)){
   header("Location: 404.php");
@@ -32,7 +35,7 @@ $annonse = new Annonse($_GET['annonse']);
 
 function getImage(){
   global $annonse;
-  $annonse->getImage();
+  echo $annonse->getImage();
 }
 
 function getTittel(){

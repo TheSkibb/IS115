@@ -2,53 +2,32 @@
 //if post request is sent
 
 require("./../lib/database.inc.php");
+//var_dump($_REQUEST);
 
 $sql = "
-insert into annonser (
-  eier,
-  gate,
-  postnummer,
-  leie,
-  depositum,
-  tittel,
-  beskrivelse,
-  startLeie,
-  sluttLeie,
-  kollektiv,
-  dyrTillatt,
-  roykingTillatt,
-  stromInkl,
-  internettInkl,
-  tvInkl,
-  moblert,
-  boligtype,
-  soveromAnt,
-  badAnt,
-  kvadrat,
-  bildelenke
-) values (
-  :bruker,
-  :addresse,
-  :postnummer,
-  :leie,
-  :depositum,
-  :tittel,
-  :beskrivelse,
-  :startLeie,
-  :sluttLeie,
-  :kollektiv,
-  :dyrTillatt,
-  :roykingTillatt,
-  :stromInkl,
-  :internettInkl,
-  :tvInkl,
-  :moblert,
-  :boligtype,
-  :soveromAnt,
-  :badAnt,
-  :kvadrat,
-  :bildelenke
-  )";
+update annonser set
+  gate = :addresse,
+  postnummer = :postnummer,
+  leie = :leie,
+  depositum = :depositum,
+  tittel = :tittel,
+  beskrivelse = :beskrivelse,
+  startLeie = :startLeie,
+  sluttLeie = :sluttLeie,
+  kollektiv = :kollektiv,
+  dyrTillatt = :dyrTillatt,
+  roykingTillatt = :roykingTillatt,
+  stromInkl = :stromInkl,
+  internettInkl = :internettInkl,
+  tvInkl = :tvInkl,
+  moblert = :moblert,
+  boligtype = :boligtype,
+  soveromAnt = :soveromAnt,
+  badAnt = :badAnt,
+  kvadrat = :kvadrat,
+  bildelenke = :bildelenke
+where id = :id
+";
 
 $pdo = new PDO($dkn, $DB_BRUKER, $DB_PASS);
 try{
@@ -62,7 +41,6 @@ $sp = $pdo->prepare($sql);
 
 //TODO: put back actual eier
 $brukerTemp = 5;
-$sp->bindParam(':bruker',   $brukerTemp, PDO::PARAM_STR);
 $sp->bindParam(':addresse', $addresse, PDO::PARAM_STR);
 $sp->bindParam(':postnummer', $postnummer, PDO::PARAM_STR);
 $sp->bindParam(':leie', $leie, PDO::PARAM_INT);
@@ -83,6 +61,9 @@ $sp->bindParam(':soveromAnt', $soveromAnt, PDO::PARAM_INT);
 $sp->bindParam(':badAnt', $badAnt, PDO::PARAM_INT);
 $sp->bindParam(':kvadrat', $kvadrat, PDO::PARAM_INT);
 $sp->bindParam(':bildelenke', $bildelenke, PDO::PARAM_STR);
+$sp->bindParam(':id', $annonseId, PDO::PARAM_INT);
+
+//var_dump($sp);
 
 $addresse = $_REQUEST['Gate'];
 $postnummer = $_REQUEST['Postnummer'];
@@ -103,6 +84,7 @@ if($_REQUEST['sluttLeie'] != ""){
 }
 else{
   $sluttLeie = null;
+  echo "*********************";
 }
 
 if(key_exists('kollektiv', $_REQUEST)){
@@ -162,7 +144,7 @@ else{
   $boligtype = null;
 }
 
-if(key_exists('$_REQUEST', $_REQUEST)){
+if(key_exists('soveromAnt', $_REQUEST)){
   $soveromAnt = $_REQUEST['soveromAnt'];
 }
 else{

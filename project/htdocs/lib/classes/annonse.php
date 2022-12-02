@@ -10,9 +10,11 @@ class Annonse {
     bruker.fornavn,
     bruker.etternavn
     from annonser 
-    inner join boligtype on annonser.boligtype = boligtype.id
-    inner join bruker on annonser.eier = bruker.id
+    left join boligtype on annonser.boligtype = boligtype.id
+    left join bruker on annonser.eier = bruker.id
     where annonser.id=:id";
+
+    //var_dump($sql);
 
     $pdo = new PDO($dkn, $DB_BRUKER, $DB_PASS);
     try{
@@ -25,6 +27,8 @@ class Annonse {
     $sp = $pdo->prepare($sql);
     $sp->bindParam(':id', $id, PDO::PARAM_INT);
     $id = $annonseId;
+    //var_dump($id);
+    //echo '<br>';
 
     try{
       $sp->execute();
@@ -60,16 +64,29 @@ class Annonse {
         ),
         'beskrivelse'=>$results[0]->beskrivelse,
         'leie'=>$results[0]->leie,
+        'depositum'=>$results[0]->depositum,
         'gate'=>$results[0]->gate,
         'postnummer'=>$results[0]->postnummer,
-        'brukerId'=>$results[0]->eier
+        'brukerId'=>$results[0]->eier,
+        'startLeie'=>$results[0]->startLeie,
+        'sluttLeie'=>$results[0]->sluttLeie,
+        'kollektiv'=>$results[0]->kollektiv,
+        'dyrTillatt'=>$results[0]->dyrTillatt,
+        'roykingTillatt'=>$results[0]->roykingTillatt,
+        'stromInkl'=>$results[0]->stromInkl,
+        'internettInkl'=>$results[0]->internettInkl,
+        'tvInkl'=>$results[0]->tvInkl,
+        'moblert'=>$results[0]->moblert,
+        'boligtype'=>$results[0]->boligtype,
+        'soveromAnt'=>$results[0]->soveromAnt,
+        'badAnt'=>$results[0]->badAnt,
+        'kvadrat'=>$results[0]->kvadrat,
       );
 
       //var_dump($this->information);
     }
     else{
     }
-
   }
 
   static function displayInfo($info, $message = null){
@@ -90,7 +107,7 @@ class Annonse {
   }
 
   function getImage(){
-    echo $this->information['bilde'];
+    return $this->information['bilde'];
   }
 
   function getTittel(){
@@ -112,9 +129,77 @@ class Annonse {
   function getLeie(){
     echo $this->information['leie'];
   }
+
+  function getStartLeie(){
+    echo $this->information['startLeie'];
+  }
+
+  function getSluttLeie(){
+    echo $this->information['sluttLeie'];
+  }
+
+  function getKollektiv(){
+    return $this->information['kollektiv'];
+  }
+
+  function getDyrTillatt(){
+    return $this->information['dyrTillatt'];
+  }
+
+  function getRoykingTillatt(){
+    return $this->information['roykingTillatt'];
+  }
+
+  function getStromInkl(){
+    return $this->information['stromInkl'];
+  }
+
+  function getInternettInkl(){
+    return $this->information['internettInkl'];
+  }
+
+  function getTvInkl(){
+    return $this->information['tvInkl'];
+  }
+
+  function getMoblert(){
+    return $this->information['moblert'];
+  }
+
+  function getInfo($info){
+    return $this->information[$info];
+  }
+
+  function getBoligtype(){
+    return $this->information['boligtype'];
+  }
+
+  function getSoveromAnt(){
+    echo $this->information['soveromAnt'];
+  }
+
+  function getBadAnt(){
+    echo $this->information['badAnt'];
+  }
+
+  function getKvadrat(){
+    echo $this->information['kvadrat'];
+  }
+
+  function getDepositum(){
+    echo $this->information['depositum'];
+  }
   
   function getAddresse(){
     echo $this->information['gate'] . ' ' . $this->information['postnummer'];
+  }
+
+  function getGate(){
+    echo $this->information['gate'];
+  }
+
+  function getPostNummer(){
+    echo $this->information["postnummer"];
   }
 
   function getInfoListe(){

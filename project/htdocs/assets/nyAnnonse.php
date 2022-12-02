@@ -13,8 +13,9 @@ error_reporting(E_ALL);
 
 require_once('./../lib/navbar.php');
 
-//sjekk om bruker er logget inn
-session_start();
+//(disabled til loginn funker igjen)
+//sjekk om bruker er logget inn 
+/*session_start();
 if(key_exists('userId', $_SESSION)){
   $bruker = $_SESSION['userId'];
 }
@@ -29,11 +30,19 @@ if($userType == 1 || $userType == null){
   header('Location: ./hjem.php');
   exit();
 }
-
+*/
 if(isset($_REQUEST['registrerAnnonse'])){
+  //initialiserer variabel som brukes på tvers av importene
+  $bildeNavn = "";
+  //hent id-en som vil høre til annonsen
+  require_once('./../lib/getAnnonseInfo.php');
+  $annonseId = getUnusedId();
   require_once('../lib/lastOppFil.php');
   require_once('../lib/nyAnnonse.php');
 }
+
+
+$bruker = 5;
 ?>
 
 <div id="formContainer">
@@ -104,7 +113,7 @@ if(isset($_REQUEST['registrerAnnonse'])){
     <input type="file" name="bilde" size="20" accept="image/x-png,image/jpeg">
   </p>
 
-  <button type="submit" name="registrerAnnonse" value="registrerAnnonse">last opp bilde</button>
+  <button type="submit" name="registrerAnnonse" value="registrerAnnonse">Last opp annonse</button>
 
 </form>
 

@@ -50,6 +50,7 @@ function getMeldinger($receiver, $sender){
 //$tilbruker int, brukeren meldingen skal sendes til
 //$frabruker int, brukeren som sender meldingen (den innloggede brukeren)
 //$innhold string, innholdet meldingen skal inneholde
+//legger til en ny melding i databasen
 function sendMelding($tilbruker, $frabruker, $innhold){
   require('./../lib/database.inc.php');
   $sql = 'insert into meldinger(
@@ -84,6 +85,69 @@ function sendMelding($tilbruker, $frabruker, $innhold){
   catch(PDOException $e){
     echo 'error' . $e;
     exit();
+  }
+}
+
+//$userId int
+//henter nyest meldingen som brukeren har sendt til de 
+//brukeren har sendt meldinger med
+function getUserMeldinger($userId){
+  require('./../lib/database.inc.php');
+  $sql = '
+    select min(dato), bruker.fornavn, tilbruker, frabruker
+    from meldinger
+    inner join bruker on tilbruker = bruker.id
+    inner join bruker on frabruker = bruker.id
+    where tilbruker = :userId or frabruker = :userId
+    group by frabruker, tilbruker
+    order by dato asc
+  ';
+  //var_dump($sql);
+
+  $pdo = new PDO($dkn, $DB_BRUKER, $DB_PASS);
+  try{
+    $sp = $pdo->prepare($sql);
+  }
+  catch(PDOException $e){
+    echo 'noe feil skjedde';
+  }
+  echo 1;
+
+  $sp = $pdo->prepare($sql);
+  echo 2;
+
+  $sp->bindParam(':userId', $userId, PDO::PARAM_INT);
+  echo 3;
+
+  try{
+    $sp->execute();
+    $results = $sp->fetchAll(PDO::FETCH_OBJ);
+  }
+  catch(PDOException $e){
+    echo 'error' . $e;
+    exit();
+  }
+  echo 4;
+
+  if(sizeof($results) > 0){
+    $outputStr = "";
+    //noen av brukerene kommer dobbelt fra queryen, dette 
+    //arrayet brukes for å samle opp og sjekke om meldinger
+    //med en bruker er listet opp fra før
+    $brukere = array();
+    foreach($results as $result){
+      $andreBruker = $result->frabruker == $userId ? $result->tilbruker : $result->frabruker;
+      if(!key_exists($andreBruker, $brukere)){
+        $outputStr .= '<div class="melding">';
+        $outputStr .= $andreBruker;
+        $outputStr .= "</div>";
+        $brukere[$andreBruker] = "";
+      }
+    }
+    return $outputStr;
+  }
+  else{
+    return "Du har ikke sendt noen meldinger";
   }
 
 }
