@@ -60,9 +60,7 @@ catch(PDOException $e){
 
 $sp = $pdo->prepare($sql);
 
-//TODO: put back actual eier
-$brukerTemp = 5;
-$sp->bindParam(':bruker',   $brukerTemp, PDO::PARAM_STR);
+$sp->bindParam(':bruker',   $bruker, PDO::PARAM_STR);
 $sp->bindParam(':addresse', $addresse, PDO::PARAM_STR);
 $sp->bindParam(':postnummer', $postnummer, PDO::PARAM_STR);
 $sp->bindParam(':leie', $leie, PDO::PARAM_INT);
