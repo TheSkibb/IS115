@@ -1,4 +1,4 @@
--- use project
+ use project
 
 create or replace table kjonn(
   id int not null primary key auto_increment,
@@ -112,10 +112,10 @@ insert into bruker (
   'olsen',
   'birgerOlsen',
   'birgerolsen@mail.com',
-  1,
+  2,
   1,
   'vennlig utleier som leier ut leiligheter',
-  'passord'
+  '$2y$10$Es9wViRX0EbNBKvegtKOSurwJ7vh8yyzGEUrVOcXFNN0PUbU16oM.'
 );
 
 insert into bruker (
@@ -132,10 +132,10 @@ insert into bruker (
   'svendsen',
   'kar11',
   'kariSvendsen@mail.no',
-  1,
+  2,
   2,
   'utleier som leier ut kjellerleiligheten min',
-  'passord'
+  '$2y$10$Es9wViRX0EbNBKvegtKOSurwJ7vh8yyzGEUrVOcXFNN0PUbU16oM.'
 );
 
 insert into bruker (
@@ -155,7 +155,7 @@ insert into bruker (
   2,
   1,
   'rolig person som ikke liker fest og moro',
-  'passord'
+  '$2y$10$Es9wViRX0EbNBKvegtKOSurwJ7vh8yyzGEUrVOcXFNN0PUbU16oM.'
 );
 insert into bruker (
   fornavn,
@@ -174,7 +174,7 @@ insert into bruker (
   2,
   2,
   'leter etter et sted og bo',
-  'passord'
+  '$2y$10$Es9wViRX0EbNBKvegtKOSurwJ7vh8yyzGEUrVOcXFNN0PUbU16oM.'
 );
 
 
