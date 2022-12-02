@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<head>
+<meta charset="utf8mb4" >
 <?php      
    #$host = "localhost";  
   # $bruker = "root";  
@@ -68,8 +71,15 @@ if ($num_rows) {
  $epost=$_POST['epost'];
  $brukernavn=$_POST['brukernavn'];
  $passord=$_POST['passord'];
- if(mysqli_query($con,"INSERT INTO bruker(fornavn, etternavn, epost,brukernavn, passord)
- VALUES('$fornavn', '$etternavn','$epost', '$brukernavn', '$passord')")){ 
+
+ $hash_passord = password_hash($passord, PASSWORD_DEFAULT);
+ $passord = password_verify($passord, $hash_passord);
+
+ $kjonnId=$_POST['kjonnId'];
+ $beskrivelse=$_POST['beskrivelse'];
+ $brukerTypeId=$_POST['brukerTypeId'];
+ if(mysqli_query($con,"INSERT INTO `bruker`(fornavn, etternavn, epost,brukernavn, passord, kjonnId, beskrivelse, brukerTypeId)
+ VALUES('$fornavn', '$etternavn','$epost', '$brukernavn', '$passord', '$kjonnId', '$beskrivelse', '$brukerTypeId')")){ 
 	header("location: ../assets/logginn.php?remarks=success");
  }else{
 	 $e=mysqli_error($con);
@@ -77,5 +87,7 @@ if ($num_rows) {
  }
 }
 
+#BASE64_ENCODE
 ?>  
-
+</head>
+</html>

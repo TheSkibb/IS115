@@ -1,3 +1,4 @@
+<!--
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,10 +12,11 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 #include("../static/utforming.php");
 include("../lib/database.php");
-#require('../lib/sesjon.php');
+#include("forbindelse.php");
+
+#require('../lib/sesjon.php');  password_verify($password, $hashed_password)
 ?>
 
-<!--hoved siden -->
 <div class="hoved" >
   
 <?php 
@@ -24,8 +26,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 	$passord=mysqli_real_escape_string($con,$_POST['passord']);
 	$result = mysqli_query($con,"SELECT * FROM bruker");
 	$c_rows = mysqli_num_rows($result);
+
+	$hash_passord = password_hash($passord, PASSWORD_DEFAULT);
+	$passord = password_verify($passord, $hash_passord);
+
+
 	if ($c_rows!=$brukernavn) {
-		header("location: logginn.php?remark_login=failed");
+		header("location: ../assets/logginn.php?remark_login=failed");
 	}
 	$sql="SELECT id FROM bruker WHERE brukernavn='$brukernavn' and passord='$passord'";
 	$result=mysqli_query($con,$sql);
@@ -35,14 +42,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 	if($count==1) {
 		$_SESSION['login_user']=$brukernavn;
     $_SESSION['userId']=$row["id"];
-		header("location: profil.php");
+		header("location: ../assets/profil.php");
 	}
 }
 
 ?>
-<!--<p><a href="loggut.php">Logout</a></p>-->
     
 
 </div>
 </body>
 </html>
+-->

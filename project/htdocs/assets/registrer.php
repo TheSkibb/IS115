@@ -7,32 +7,12 @@
 <?php
 include("../static/utforming.php");
 include("../lib/database.php");
+include("../lib/godkjenning.php");
 
-#include("../lib/godkjenning.php");
-#include("../lib/sesjon.php");
-
-#require('../lib/sesjon.php');
 ?>
 <div class="hoved">
+<h2> Registrer deg her </h2>
 <?php
-#$remarks = isset($_GET["remarks"]) ? $_GET["remarks"] : '';
-#if ($remarks==null and $remarks=="") {
-#echo " <h2> Registrer her </h2> ";
-#
-#if ($remarks=='success') {
-#echo " <p> Du er registrert. </p>";
-#}
-#if ($remarks=='failed') {
-#echo " <p> Registrering mislyktes, brukernavnet finnes </p>";
-#}
-#if ($remarks=='error') {
-#echo " <p> Registrering feilet! <br> Feil: ".$_GET["value"]." </p> ";
-#}
-#echo " <h2> Registrer her </h2> ";
-
-#if (isset($_REQUEST["brukernavn"])) { 
-  
-  
 
 if (isset($_REQUEST["brukernavn"])) {
   $fornavn    = stripslashes($_REQUEST["fornavn"]);
@@ -60,56 +40,39 @@ if (isset($_REQUEST["brukernavn"])) {
   $brukerTypeId = mysqli_real_escape_string($con, $brukerTypeId);
 
   $query    = "INSERT into `bruker` (fornavn, etternavn, brukernavn, passord, epost, kjonnId, beskrivelse, brukerTypeId)
-               VALUES ('$fornavn', '$etternavn', '$brukernavn', '" . md5($passord) . "', '$epost', '$kjonnId', '$beskrivelse', '$brukerTypeId')";
+               VALUES ('$fornavn', '$etternavn', '$brukernavn', '$passord, '$epost', '$kjonnId', '$beskrivelse', '$brukerTypeId')";
   $result   = mysqli_query($con, $query);
-} if ($result) {
-  echo "<div class='form'>"; 
-        "<h3>Du er registert.</h3><br/>
-        <p class='link'>Klikk her for å  <a href='logge inn.php'>Login</a></p>
-        </div>";
-} else {
-  echo "<div class='form'>
-        <h3>Required fields are missing.</h3><br/></div>";
-}
+} else 
+
 ?>
-<!-- 
-<form class="form" action="" method="post">
-        <h1 class="login-title">Registration</h1>
-        <input type="text" class="login-input" name="username" placeholder="Username" required />
-        <input type="text" class="login-input" name="email" placeholder="Email Adress">
-        <input type="password" class="login-input" name="password" placeholder="Password">
-        <input type="submit" name="submit" value="Register" class="login-button">
-        <p class="link"><a href="login.php">Click to Login</a></p>
-    </form>
-    action="../lib/forbindelse.php"
--->
-<form class="form" action="" onsubmit="return validateForm()" method="post" >
+
+<form class="form" action="../lib/forbindelse.php" onsubmit="return validateForm()" method="post" >
 <table border="0" align="center" cellpadding="2" cellspacing="0">
 
 <!--Fornavn input   name="reg"-->
 <tr>
 <td><div align="left">Fornavn:</div></td>
-<td width="171"><input type="text" class="login-input" name="fornavn" /></td>
+<td width="171"><input type="text" class="login-input" name="fornavn" required/></td>
 </tr>
 <!--Etternavn input  -->
 <tr>
 <td><div align="left">Etternavn:</div></td>
-<td><input type="text" name="etternavn" class="login-input" /></td>
+<td><input type="text" name="etternavn" class="login-input" required/></td>
 </tr>
 <!--Epost  -->
 <tr>
 <td><div align="left" >E-post:</div></td>
-<td><input type="text" class="login-input"  name="epost" /></td>
+<td><input type="text" class="login-input"  name="epost" required/></td>
 </tr>
 <!--Brukernavn  -->
 <tr>
 <td><div align="left">Brukernavn:</div></td>
-<td><input type="text" class="login-input" name="brukernavn" /></td>
+<td><input type="text" class="login-input" name="brukernavn" required/></td>
 </tr>
 <!--Passord  class="t-1"-->
 <tr>
 <td><div align="left">Passord:</div></td>
-<td><input class="login-input" type="password" name="passord" /></td>
+<td><input class="login-input" type="password" name="passord" required/></td>
 </tr>
 </table><br>
 
@@ -141,10 +104,8 @@ if (isset($_REQUEST["brukernavn"])) {
 <input type="submit" name="submit"  value="Register" class="login-button">
 
 </form>
+<p>Har du en bruker? <a href="logginn.php">Logg inn</a>
 
-
-
-</div>
 </div>
 </body>
 </html>
