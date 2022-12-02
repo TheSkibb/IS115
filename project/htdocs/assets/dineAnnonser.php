@@ -32,6 +32,8 @@ if($userType == 1 || $userType == null){
 //filter for annonsene som skal vises
 $searchFilter = ' where eier = ' . $bruker;
 
+echo '<p><a href="./nyAnnonse.php">Lag ny annonse</a></p>';
+
 //hent alle annonser med filteret, eier er satt til true
 include "./../lib/classes/hjemAnnonse.php";
 HjemAnnonse::getAllAnnonser($searchFilter, true);
