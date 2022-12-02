@@ -15,7 +15,7 @@ require_once('./../lib/navbar.php');
 
 //(disabled til loginn funker igjen)
 //sjekk om bruker er logget inn 
-/*session_start();
+session_start();
 if(key_exists('userId', $_SESSION)){
   $bruker = $_SESSION['userId'];
 }
@@ -23,14 +23,13 @@ else{
   header('Location: ./logginn.php');
 }
 
-//kun utleiere kan lage nye annonser, sjekk om bruker er utleier
-require_once('../lib/getUserInfo.php');
-$userType = getUserTypeFromId($bruker);
-if($userType == 1 || $userType == null){
-  header('Location: ./hjem.php');
-  exit();
+require_once('./../lib/getAnnonseInfo.php');
+
+$annonseEier = getEierId($_GET['annonse']);
+if(!$annonseEier == $bruker){
+  header('Location: ./../assets/hjem.php');
 }
-*/
+
 if(isset($_REQUEST['redigerAnnonse'])){
   //initialiserer variabel som brukes på tvers av importene
   //var_dump($_FILES);
