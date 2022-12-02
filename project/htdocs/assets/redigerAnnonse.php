@@ -33,7 +33,7 @@ if($userType == 1 || $userType == null){
 */
 if(isset($_REQUEST['redigerAnnonse'])){
   //initialiserer variabel som brukes på tvers av importene
-  var_dump($_FILES);
+  //var_dump($_FILES);
   $bildeNavn = "";
   $annonseId = $_GET['annonse'];
   if(is_uploaded_file($_FILES['bilde']['tmp_name'])){
@@ -44,7 +44,7 @@ if(isset($_REQUEST['redigerAnnonse'])){
     $bildeNavn = getBildeId($annonseId);
   }
   require_once('../lib/oppdaterAnnonse.php');
-  var_dump($_REQUEST);
+  //var_dump($_REQUEST);
 }
 
 $bruker = 5;
@@ -89,13 +89,14 @@ $annonse = new Annonse($_GET['annonse']);
 
   <?php 
 
+    //$preferanse string, settes som navn på feltet
+//printer ut radio buttons med riktig checket utifra hva som står i db
     function getPreferanser($preferanse){
     global $annonse;
-    echo '<input type="radio" name="' . $preferanse . '"' .
-    ($annonse->getInfo($preferanse) == 1 ? 'checked="true"' : '' ).' value="1"> Ja
-    <input type="radio" name="' . $preferanse . '"' .'" value="0" '.
-    ($annonse->getInfo($preferanse) == 0 ? 'checked="true"' : '' ) . '> Nei';
-  echo $annonse->getInfo($preferanse);
+      echo '<input type="radio" name="' . $preferanse . '"' .
+      ($annonse->getInfo($preferanse) == 1 ? 'checked="true"' : '' ).' value="1"> Ja
+      <input type="radio" name="' . $preferanse . '"' .'" value="0" '.
+      ($annonse->getInfo($preferanse) == 0 ? 'checked="true"' : '' ) . '> Nei';
     }
   ?>
   <p>Kollektiv<br>
